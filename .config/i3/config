@@ -1,0 +1,364 @@
+
+###############################################################################################################
+#   Filename: i3/config                                                                                       #
+# Maintainer: George Hadjiantonis                                                                             #
+#        URL: https://github.com/ghadj/i3-config/blob/master/i3/config                                        #
+#                                                                                                             #
+# Sets i3 settings for the session                                                                            #
+###############################################################################################################
+
+# ----------------------------------- TODO  -----------------------------------+
+# (1) fix brightness settings
+# (2) add current keyboard layout to the i3 status bar
+#     https://stackoverflow.com/questions/21483050/get-current-active-keyboard-layoutlanguage-in-linux#33689725
+# (-) the problem about resolution and scaling was in the .profile file. with the defined constants
+# https://dougie.io/linux/hidpi-retina-i3wm/
+# -----------------------------------------------------------------------------+
+
+set $mod Mod4
+set $alt Mod1
+
+# ------------------------------- Autolaunch ----------------------------------+
+exec_always --no-startup-id nm-applet
+exec --no-startup-id /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1
+exec dconf write /org/gnome/desktop/interface/cursor-size 52
+
+#exec --no-startup-id i3-msg 'workspace 1; exec google-chrome --app="https://to-do.microsoft.com/";exec thunderbird; layout tabbed'
+
+# -------------------------- Change keyboard layout ---------------------------+
+exec_always "setxkbmap -option 'grp:alt_shift_toggle' -layout us,de,gr -variant ,qwerty"
+
+# --------------------------------- Windows -----------------------------------+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec gnome-terminal --hide-menubar --profile=i3
+#bindsym $mod+n exec caja
+
+# kill focused window
+bindsym $mod+Shift+A kill
+
+# change focus
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+m focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+#bindsym $mod+Shift+j move left
+#bindsym $mod+Shift+k move down
+#bindsym $mod+Shift+l move up
+#bindsym $mod+Shift+M move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+q focus parent
+
+# Resize window (you can also use the mouse for that)
+mode "Resize" {
+        # These bindings trigger as soon as you enter the Resize mode
+        set $Resize_val 15 
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        # bindsym j Resize shrink width $Resize_val px or $Resize_val ppt
+        # bindsym k Resize grow height $Resize_val px or $Resize_val ppt
+        # bindsym l Resize shrink height $Resize_val px or $Resize_val ppt
+        # bindsym m Resize grow width $Resize_val px or $Resize_val ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left Resize shrink width $Resize_val px or $Resize_val ppt
+        bindsym Down Resize grow height $Resize_val px or $Resize_val ppt
+        bindsym Up Resize shrink height $Resize_val px or $Resize_val ppt
+        bindsym Right Resize grow width $Resize_val px or $Resize_val ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "Resize"
+
+# add color-border around every window, to be easier to distinguish which is active 
+for_window [class=".*"] border pixel 4
+
+# custom settings for applications
+for_window[class="calendar"] floating enable
+for_window[class="calculator"] floating enable
+for_window[class="keepassxc"] floating enable
+#for_window[class="Nautilus"] floating enable
+for_window[class="matplotlib"] floating enable]
+
+
+# ------------------------------------ Menu -----------------------------------+
+# start dmenu (a program launcher)
+#bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run -nb '#1e1e1e' -sf '#1e1e1e' -sb '#f4800d' -nf '#F4800d' 
+
+#bindsym $mod+d exec --no-startup-id dmenu
+
+# --- rofi ---
+# rofi theme setting in ~/.Xresources
+# add "-show-icons" to show the icons of applications and open windows
+# check man rofi - interesting examples
+bindsym $mod+d exec rofi -dpi 0 -show drun -font "Ubuntu 12"
+bindsym $mod+w exec rofi -dpi 0 -show window -font "Ubuntu 12"
+
+#https://github.com/davatorium/rofi-themes/tree/master/Official%20Themes
+#bindsym $mod+d exec rofi -show drun -theme arthur
+
+# ------------------------------- Workspaces ----------------------------------+
+# focus the child container
+#bindsym $mod+d focus child
+
+set $wp1    "1"  
+set $wp2    "2"
+set $wp3    "3"
+set $wp4    "4"
+set $wp5    "5"
+set $wp6    "6"
+set $wp7    "7"
+set $wp8    "8"
+set $wp9    "9"
+set $wp10   "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $wp1
+bindsym $mod+2 workspace $wp2
+bindsym $mod+3 workspace $wp3
+bindsym $mod+4 workspace $wp4
+bindsym $mod+5 workspace $wp5
+bindsym $mod+6 workspace $wp6
+bindsym $mod+7 workspace $wp7
+bindsym $mod+8 workspace $wp8
+bindsym $mod+9 workspace $wp9
+bindsym $mod+0 workspace $wp10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $wp1
+bindsym $mod+Shift+2 move container to workspace $wp2
+bindsym $mod+Shift+3 move container to workspace $wp3
+bindsym $mod+Shift+4 move container to workspace $wp4
+bindsym $mod+Shift+5 move container to workspace $wp5
+bindsym $mod+Shift+6 move container to workspace $wp6
+bindsym $mod+Shift+7 move container to workspace $wp7
+bindsym $mod+Shift+8 move container to workspace $wp8
+bindsym $mod+Shift+9 move container to workspace $wp9
+bindsym $mod+Shift+0 move container to workspace $wp10
+
+# Set workspace name
+bindsym $mod+t exec i3-input -F 'rename workspace to %s' -P 'New name: '
+
+# switch workspace
+bindsym $mod+comma workspace prev
+bindsym $mod+period workspace next
+
+# ---------------------------- Configuration file -----------------------------+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# ---------------------------- i3-gaps integration ----------------------------+
+
+#for_window [class="^.*"] border pixel 0
+#for_window [window_role="pop-up"] floating enable
+#for_window [window_role="task_dialog"] floating enable
+#for_window [title="Preferences$"] floating enable
+
+#for_window [floating] border pixel 1
+
+#smart_gaps off
+#gaps inner 2
+#gaps outer 0
+
+# ----------------------------------- DPI -------------------------------------+
+exec xrandr --dpi 192
+exec XDG_CURRENT_DESKTOP=ubuntu:GNOME
+exec GDMSESSION=gnome-shell 
+exec gsettings set org.gnome.desktop.interface text-scaling-factor 2
+exec gsettings set org.gnome.desktop.interface scaling-factor 2
+
+exec export GDK_SCALE=2
+exec export GDK_DPI_SCALE=2
+exec export QT_AUTO_SCREEN_SCALE_FACTOR=2
+set $displayMode "Set display mode [l]aptop [h]ome"
+bindsym $mod+x mode $displayMode
+mode $displayMode {
+    bindsym h exec bash ~/.config/i3/scripts/home_mode.sh 
+    bindsym l exec bash ~/.config/i3/scripts/laptop_mode.sh
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+#--------------------------- Suspend/Lock/Shutdown ----------------------------+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id bash ~/.config/i3/scripts/lockscreen.sh, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id bash ~/.config/i3/scripts/lockscreen.sh && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id bash ~/.config/i3/scripts/lockscreen.sh && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id  systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+s mode "$mode_system"
+
+# lock only
+bindsym $mod+Shift+l exec ~/.config/i3/scripts/lockscreen.sh 
+# lock and suspend
+#bindsym $mod+Shift+m exec ~/.config/i3/scripts/lockscreen.sh && systemctl suspend
+# suspend without lock
+bindsym $mod+Shift+k exec systemctl suspend
+# shutdown system
+#bindsym $mod+Shift+s exec "i3-nagbar -t error -m 'You pressed the shutdown shortcut. Do you really want to shutdown system?' -b 'Yes, shutdown' 'shutdown -h now'"
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec i3-msg exit
+
+# ------------------------------ Touchpad config ------------------------------+
+set $touchpad DLL0704:01 06CB:76AE Touchpad
+exec --no-startup-id xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
+exec --no-startup-id xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
+exec --no-startup-id xinput set-prop "$touchpad" "libinput Disable While Typing Enabled" 0
+
+# ---------------------------------- Misc -------------------------------------+
+exec --no-startup-id redshift
+exec --no-startup-id rm -rf /home/jpenuchot/tmp/*
+exec --no-startup-id rm -rf /home/jpenuchot/tmp/.*
+
+#exec --no-startup-id compton --backend glx --glx-no-stencil --xrender-sync-fence --blur-background -i 0.9 -f -D 3 --inactive-dim 0.2
+exec --no-startup-id unclutter
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec --no-startup-id screen -dmS Sync syncthing -no-browser
+
+#----------------------------- Brightness/Sound -------------------------------+
+# Backlight
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # Increase Brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # Decrease Brightness
+
+# backlight settings using xrandr
+# increase (+0.1)
+bindsym XF86MonBrightnessUp exec xrandr --output eDP-1 --brightness $(echo "$(xrandr --verbose |grep Brightness |grep -o '[0-9].*')+0.1" | bc)
+# decrease (-0.1)
+bindsym XF86MonBrightnessDown exec xrandr --output eDP-1 --brightness $(echo "$(xrandr --verbose |grep Brightness |grep -o '[0-9].*')-0.1" | bc) 
+
+# Rhythmbox Player Control
+bindsym XF86AudioPlay exec rhythmbox-client --play-pause
+bindsym XF86AudioPause exec rhythmbox-client --pause
+bindsym XF86AudioPrev exec rhythmbox-client --previous
+bindsym XF86AudioNext exec rhythmbox-client --next
+
+# Other
+bindsym Print exec scrot -q 100 -e 'mv $f ~/Pictures/'
+
+# Sound
+# Raise Volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ && paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+# Lower Volume
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- && paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+# Toggle muting
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mute
+
+# ---------------------------------- Theme ------------------------------------+
+# ------ Colors ------+
+# Name: Sunset Orange [Red]
+# Hex: #FF605C
+#
+# Name: Dark Charcoal [Dark Grey]
+# Hex: #303030
+#
+# Name: Gainsboro [Light Grey]
+# Hex: #DCDCDC
+# 
+# Name: Pastel Orange [Orange]
+# Hex: #FFBD44
+# 
+# Name: Malachite [Green]
+# Hex: #00CA4E
+# --------------------+
+set $bg-color                    #00CA4E
+set $inactive-bg-color           #303030
+set $urgent-bg-color             #FF605C
+set $active-bg-color             #303030
+
+set $text-color                  #303030
+set $active-text-color           #DCDCDC
+set $inactive-text-color         #00CA4E
+
+set $indicator                   #303030
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango: Ubuntu 12
+
+# Background
+#exec_always --no-startup-id feh --bg-scale /home/.Mars.jpg
+exec_always --no-startup-id hsetroot -cover ~/.config/i3/Pictures/wallpaper02.jpg
+#exec_always --no-startup-id hsetroot -cover ~/.config/i3/Pictures/minimal-cold-space-hd-wallpaper.jpg
+
+# Styling
+client.background #303030
+
+#                       border              background          text                indicator
+client.focused          $bg-color           $bg-color           $text-color         $indicator
+client.focused_inactive $inactive-bg-color  $inactive-bg-color  $active-text-color  $indicator
+client.unfocused        $inactive-bg-color  $inactive-bg-color  $active-text-color  $indicator
+client.urgent           $urgent-bg-color    $urgent-bg-color    $text-color         $indicator
+
+# ----------------------------------- i3bar -----------------------------------+
+bar {
+    position bottom
+#    mode hide
+    colors {
+        separator #DCDCDC
+        background #303030
+        statusline #DCDCDC
+        #                   border                      background                  text
+        focused_workspace   $bg-color                   $bg-color                   $text-color 
+        active_workspace    $active-bg-color            $active-bg-color            $active-text-color
+        inactive_workspace  $inactive-bg-color          $inactive-bg-color          $inactive-text-color 
+        urgent_workspace    $urgent-bg-color            $urgent-bg-color            $text-color
+    }
+    status_command i3status
+# TODO
+#    status_command i3status | python ~/.config/i3/scripts/wrapper.py
+}
