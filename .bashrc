@@ -127,6 +127,9 @@ alias h='history'
 alias j='jobs -l'
 # jupyter notebook
 alias jn='jupyter notebook'
+# outlook
+alias outlook='nohup google-chrome --app="https://outlook.live.com/mail/inbox" > /dev/null &'
+alias todo='nohup google-chrome --app="https://to-do.microsoft.com/" > /dev/null &'
 # END of my aliases
 eval $(thefuck --alias)
 
