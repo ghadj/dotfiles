@@ -3,7 +3,7 @@
 ! ------------------------------------------------------------------------------
 
 ! special
-*.foreground:   #d8dee8
+*.foreground:   #dcdcdc
 *.background:   #2f343f
 *.cursorColor:  #b48ead
 
@@ -120,7 +120,7 @@ rofi.color-enabled: true
 rofi.columns: 2
 
 rofi.color-window: #282828, #282828, #282828
-rofi.color-normal: #282828, #d8dee8, #282828, #d8dee8, #282828
+rofi.color-normal: #282828, #dcdcdc, #282828, #dcdcdc, #282828
 rofi.color-active: #282828, #b48ead, #282828, #2e3440, #93e5cc
 rofi.color-urgent: #2e3440, #ebcb8b, #2e3440, #2e3440, #ebcb8b
 

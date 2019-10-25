@@ -114,7 +114,7 @@ mode "Resize" {
 bindsym $mod+r mode "Resize"
 
 # add color-border around every window, to be easier to distinguish which is active 
-for_window [class=".*"] border pixel 4
+for_window [class=".*"] border pixel 2.5
 
 # custom settings for applications
 for_window[class="calendar"] floating enable
@@ -265,7 +265,7 @@ exec --no-startup-id redshift
 exec --no-startup-id rm -rf /home/jpenuchot/tmp/*
 exec --no-startup-id rm -rf /home/jpenuchot/tmp/.*
 
-#exec --no-startup-id compton --backend glx --glx-no-stencil --xrender-sync-fence --blur-background -i 0.9 -f -D 3 --inactive-dim 0.2
+exec --no-startup-id compton --backend glx --glx-no-stencil --xrender-sync-fence --blur-background -i 0.9 -f -D 3 --inactive-dim 0.2
 exec --no-startup-id unclutter
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id screen -dmS Sync syncthing -no-browser
@@ -315,14 +315,14 @@ bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mu
 # Name: Malachite [Green]
 # Hex: #00CA4E
 # --------------------+
-set $bg-color                    #00CA4E
+set $bg-color                    #DCDCDC
 set $inactive-bg-color           #303030
 set $urgent-bg-color             #FF605C
 set $active-bg-color             #303030
 
 set $text-color                  #303030
 set $active-text-color           #DCDCDC
-set $inactive-text-color         #00CA4E
+set $inactive-text-color         #DCDCDC
 
 set $indicator                   #303030
 
@@ -332,7 +332,7 @@ font pango: Ubuntu 12
 
 # Background
 #exec_always --no-startup-id feh --bg-scale /home/.Mars.jpg
-exec_always --no-startup-id hsetroot -cover ~/.config/i3/Pictures/wallpaper02.jpg
+exec_always --no-startup-id hsetroot -cover ~/.config/i3/Pictures/Jupiter.png
 #exec_always --no-startup-id hsetroot -cover ~/.config/i3/Pictures/minimal-cold-space-hd-wallpaper.jpg
 
 # Styling
