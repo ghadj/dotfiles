@@ -121,7 +121,7 @@ alias rm='rm -i'
 alias start_onedrive='nohup onedrive --monitor --confdir="~/.config/onedrive" & nohup onedrive --monitor --confdir="~/.config/onedrive_ucy" &'
 alias sync_onedrive='onedrive --confdir="~/.config/onedrive" ; onedrive --confdir="~/.config/onedrive_ucy" ;'
 # update on one command
-alias update='sudo apt-get update && sudo apt-get upgrade'
+alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
 # handy short cuts #
 alias h='history'
 alias j='jobs -l'
