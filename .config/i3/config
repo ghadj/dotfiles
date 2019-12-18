@@ -22,6 +22,7 @@ set $alt Mod1
 exec_always --no-startup-id nm-applet
 exec --no-startup-id /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1
 exec dconf write /org/gnome/desktop/interface/cursor-size 52
+exec xinput set-prop 17 324 1 # enable tap to click for touchpad https://computingforgeeks.com/enabling-tap-to-click-function-in-manjaro-via-the-command-line/
 
 #exec --no-startup-id i3-msg 'workspace 1; exec google-chrome --app="https://to-do.microsoft.com/";exec thunderbird; layout tabbed'
 
