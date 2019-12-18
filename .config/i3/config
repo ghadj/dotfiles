@@ -2,16 +2,12 @@
 ###############################################################################################################
 #   Filename: i3/config                                                                                       #
 # Maintainer: George Hadjiantonis                                                                             #
-#        URL: https://github.com/ghadj/i3-config/blob/master/i3/config                                        #
 #                                                                                                             #
 # Sets i3 settings for the session                                                                            #
 ###############################################################################################################
 
 # ----------------------------------- TODO  -----------------------------------+
 # (1) fix brightness settings
-# (2) add current keyboard layout to the i3 status bar
-#     https://stackoverflow.com/questions/21483050/get-current-active-keyboard-layoutlanguage-in-linux#33689725
-# (-) the problem about resolution and scaling was in the .profile file. with the defined constants
 # https://dougie.io/linux/hidpi-retina-i3wm/
 # -----------------------------------------------------------------------------+
 
@@ -23,7 +19,6 @@ exec_always --no-startup-id nm-applet
 exec --no-startup-id /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1
 exec dconf write /org/gnome/desktop/interface/cursor-size 52
 exec xinput set-prop 17 324 1 # enable tap to click for touchpad https://computingforgeeks.com/enabling-tap-to-click-function-in-manjaro-via-the-command-line/
-
 #exec --no-startup-id i3-msg 'workspace 1; exec google-chrome --app="https://to-do.microsoft.com/";exec thunderbird; layout tabbed'
 
 # -------------------------- Change keyboard layout ---------------------------+
@@ -125,6 +120,7 @@ for_window[class="keepassxc"] floating enable
 for_window[class="matplotlib"] floating enable]
 
 
+
 # ------------------------------------ Menu -----------------------------------+
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
@@ -204,8 +200,11 @@ bindsym $mod+Shift+r restart
 #for_window [floating] border pixel 1
 
 #smart_gaps off
-#gaps inner 2
+#gaps inner 8
 #gaps outer 0
+
+# rounded corners
+#border_radius 10
 
 # ----------------------------------- DPI -------------------------------------+
 exec xrandr --dpi 192
@@ -333,7 +332,7 @@ font pango: Ubuntu 12
 
 # Background
 #exec_always --no-startup-id feh --bg-scale /home/.Mars.jpg
-exec_always --no-startup-id hsetroot -cover ~/.config/i3/Pictures/Jupiter.png
+exec_always --no-startup-id hsetroot -cover ~/.config/i3/Pictures/solid_grey_wallpaper.jpg
 #exec_always --no-startup-id hsetroot -cover ~/.config/i3/Pictures/minimal-cold-space-hd-wallpaper.jpg
 
 # Styling
@@ -359,7 +358,6 @@ bar {
         inactive_workspace  $inactive-bg-color          $inactive-bg-color          $inactive-text-color 
         urgent_workspace    $urgent-bg-color            $urgent-bg-color            $text-color
     }
-    status_command i3status
-# TODO
-#    status_command i3status | python ~/.config/i3/scripts/wrapper.py
+    # status_command i3status
+    status_command i3status | python3 ~/.config/i3/scripts/wrapper.py
 }
