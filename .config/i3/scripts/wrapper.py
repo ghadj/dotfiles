@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # This script is a simple wrapper which prefixes each i3status line with custom
-# information. It is a python reimplementation of:
-# http://code.stapelberg.de/git/i3status/tree/contrib/wrapper.pl
+# information.
 #
 # To use it, ensure your ~/.i3status.conf contains this line:
 #     output_format = "i3bar"
@@ -12,17 +11,7 @@
 #     status_command i3status | ~/i3status/contrib/wrapper.py
 # In the 'bar' section.
 #
-# In its current version it will display the cpu frequency governor, but you
-# are free to change it to display whatever you like, see the comment in the
-# source code below.
-#
-# © 2012 Valentin Haenel <valentin.haenel@gmx.de>
-#
-# This program is free software. It comes without any warranty, to the extent
-# permitted by applicable law. You can redistribute it and/or modify it under
-# the terms of the Do What The Fuck You Want To Public License (WTFPL), Version
-# 2, as published by Sam Hocevar. See http://sam.zoy.org/wtfpl/COPYING for more
-# details.
+# George Hadjiantonis
 
 import json
 import subprocess
@@ -31,17 +20,17 @@ import sys
 
 def get_rhythmbox_status():
     """ Get the current song playing and elapsed time from rhythmbox if it is running. """
-    cmd = "rhythmbox-client --no-start --print-playing-format '%aa - %tt (%te)'"
+    cmd = "rhythmbox-client --no-start --print-playing-format '%aa - %tt '"
     try:
         rb_output = subprocess.check_output(cmd, shell=True)
         rb_output = rb_output.strip()
-    except subprocess.CalledProcessError, cpe:
+    except subprocess.CalledProcessError as cpe:
         rb_output = "Rhythmbox Client: Error"
 
-    if "(Unknown)" in rb_output:
+    if "(Unknown)" in str(rb_output):
         rb_output = "Rhythmbox: Not Playing"
 
-    return rb_output
+    return str(rb_output)
 
 def print_line(message):
     """ Non-buffered printing to stdout. """
@@ -61,6 +50,17 @@ def read_line():
     except KeyboardInterrupt:
         sys.exit()
 
+def get_keyboard_layout():
+    """ Call bash script to get current keyboard layout  """
+    cmd = "echo `~/.config/i3/Keyboard_Layout_Tool/bin/xkblayout-state print \"%s\"`"
+    try:
+        kb = subprocess.run(cmd, stdout=subprocess.PIPE, shell=True)
+        kb = kb.stdout.decode('utf-8')[:2].upper()
+    except subprocess.CalledProcessError as cpe:
+        kb = "Unavailable"
+
+    return str(kb)
+
 if __name__ == '__main__':
     # Skip the first line which contains the version header.
     print_line(read_line())
@@ -77,6 +77,7 @@ if __name__ == '__main__':
         j = json.loads(line)
         # insert information into the start of the json, but could be anywhere
         # CHANGE THIS LINE TO INSERT SOMETHING ELSE
-        j.insert(0, {'full_text' : get_rhythmbox_status(), 'name' : 'rhythmbox'})
+        #j.insert(0, {'full_text' : get_rhythmbox_status() + " ", 'name' : 'rhythmbox'})
+        j.insert(0, {'full_text' : get_keyboard_layout() + " ", 'name' : 'keyboard'})
         # and echo back new encoded json
         print_line(prefix+json.dumps(j))
