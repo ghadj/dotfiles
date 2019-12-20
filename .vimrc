@@ -36,7 +36,7 @@ filetype plugin indent on    " required
 " }}}
 
 " Plugin settings {{{
-" LightLine
+" LightLine {{{
 " Reference: https://github.com/itchyny/lightline.vim
 set noshowmode
 let g:lightline = {
@@ -49,9 +49,9 @@ let g:lightline = {
       \   'gitbranch': 'fugitive#head'
       \ },
       \ }
+" }}}
 
-
-" Vimtex 
+" Vimtex {{{ 
 " References: https://github.com/lervag/vimtex
 "             https://castel.dev/post/lecture-notes-1/
 let g:tex_flavor='latex'
@@ -72,15 +72,17 @@ let g:vimtex_toc_config = {
       \ 'show_numbers' : 1,
       \ 'mode' : 2,
       \}
+" }}}
 
-" Ultisnips 
+" Ultisnips {{{
 " Reference: https://github.com/SirVer/ultisnips
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsListSnippets = '<s-tab>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+" }}}
 
-" NerdTree
+" NerdTree {{{
 " to hide unwanted files
   let NERDTreeIgnore = [ '__pycache__', '\.pyc$', '\.o$', '\.swp',  '*\.swp',  'node_modules/' ]
 " show hidden files
@@ -93,6 +95,8 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
   map <C-n> :NERDTreeToggle<CR>
 " size
 let g:NERDTreeWinSize=35
+" }}}
+
 " }}}
 
 " General {{{
