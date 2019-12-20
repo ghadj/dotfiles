@@ -3,29 +3,30 @@
 #   Filename: i3/config                                                                                       #
 # Maintainer: George Hadjiantonis                                                                             #
 #                                                                                                             #
-# Sets i3 settings for the session                                                                            #
 ###############################################################################################################
 
-# ----------------------------------- TODO  -----------------------------------+
+# TODO {{{
 # (1) fix brightness settings
 # https://dougie.io/linux/hidpi-retina-i3wm/
-# -----------------------------------------------------------------------------+
+# }}}
 
+# Set Mod keys {{{
 set $mod Mod4
 set $alt Mod1
+# }}}
 
-# ------------------------------- Autolaunch ----------------------------------+
+# Autolaunch {{{
 exec_always --no-startup-id nm-applet
 exec --no-startup-id /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1
 exec dconf write /org/gnome/desktop/interface/cursor-size 52
-# enable tap to click for touchpad https://computingforgeeks.com/enabling-tap-to-click-function-in-manjaro-via-the-command-line/
-exec  xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad"  "libinput Tapping Enabled" 1 
 #exec --no-startup-id i3-msg 'workspace 1; exec google-chrome --app="https://to-do.microsoft.com/";exec thunderbird; layout tabbed'
+# }}}
 
-# -------------------------- Change keyboard layout ---------------------------+
+# Change keyboard layout {{{
 exec_always "setxkbmap -option 'grp:alt_shift_toggle' -layout us,de,gr -variant ,qwerty"
+# }}}
 
-# --------------------------------- Windows -----------------------------------+
+# Windows {{{
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -119,10 +120,9 @@ for_window[class="calculator"] floating enable
 for_window[class="keepassxc"] floating enable
 #for_window[class="Nautilus"] floating enable
 for_window[class="matplotlib"] floating enable]
+# }}}
 
-
-
-# ------------------------------------ Menu -----------------------------------+
+# Menu {{{
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 #bindsym $mod+d exec dmenu_run -nb '#1e1e1e' -sf '#1e1e1e' -sb '#f4800d' -nf '#F4800d' 
@@ -138,8 +138,9 @@ bindsym $mod+w exec rofi -dpi 0 -show window -font "Ubuntu 12"
 
 #https://github.com/davatorium/rofi-themes/tree/master/Official%20Themes
 #bindsym $mod+d exec rofi -show drun -theme arthur
+# }}}
 
-# ------------------------------- Workspaces ----------------------------------+
+# Workspaces {{{
 # focus the child container
 #bindsym $mod+d focus child
 
@@ -184,15 +185,16 @@ bindsym $mod+t exec i3-input -F 'rename workspace to %s' -P 'New name: '
 # switch workspace
 bindsym $mod+comma workspace prev
 bindsym $mod+period workspace next
+# }}}
 
-# ---------------------------- Configuration file -----------------------------+
+# Configuration file {{{
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+# }}}
 
-# ---------------------------- i3-gaps integration ----------------------------+
-
+# i3-gaps integration {{{
 #for_window [class="^.*"] border pixel 0
 #for_window [window_role="pop-up"] floating enable
 #for_window [window_role="task_dialog"] floating enable
@@ -206,8 +208,9 @@ bindsym $mod+Shift+r restart
 
 # rounded corners
 #border_radius 10
+# }}}
 
-# ----------------------------------- DPI -------------------------------------+
+# DPI {{{
 exec xrandr --dpi 192
 exec XDG_CURRENT_DESKTOP=ubuntu:GNOME
 exec GDMSESSION=gnome-shell 
@@ -226,8 +229,9 @@ mode $displayMode {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+# }}}
 
-#--------------------------- Suspend/Lock/Shutdown ----------------------------+
+# Suspend/Lock/Shutdown {{{
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id bash ~/.config/i3/scripts/lockscreen.sh, mode "default"
@@ -254,14 +258,18 @@ bindsym $mod+Shift+k exec systemctl suspend
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 #bindsym $mod+Shift+e exec i3-msg exit
+# }}}
 
-# ------------------------------ Touchpad config ------------------------------+
-set $touchpad DLL0704:01 06CB:76AE Touchpad
+# Touchpad config {{{ 
+# enable tap to click for touchpad 
+# Reference: https://computingforgeeks.com/enabling-tap-to-click-function-in-manjaro-via-the-command-line/
+set $touchpad "SYNA2393:00 06CB:7A13 Touchpad"
 exec --no-startup-id xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
 exec --no-startup-id xinput set-prop "$touchpad" "libinput Disable While Typing Enabled" 0
+# }}}
 
-# ---------------------------------- Misc -------------------------------------+
+# Misc {{{
 exec --no-startup-id redshift
 exec --no-startup-id rm -rf /home/jpenuchot/tmp/*
 exec --no-startup-id rm -rf /home/jpenuchot/tmp/.*
@@ -270,8 +278,9 @@ exec --no-startup-id compton --backend glx --glx-no-stencil --xrender-sync-fence
 exec --no-startup-id unclutter
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id screen -dmS Sync syncthing -no-browser
+# }}}
 
-#----------------------------- Brightness/Sound -------------------------------+
+# Brightness/Sound {{{
 # Backlight
 #bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # Increase Brightness
 #bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # Decrease Brightness
@@ -298,9 +307,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- && paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 # Toggle muting
 bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mute
+# }}}
 
-# ---------------------------------- Theme ------------------------------------+
-# ------ Colors ------+
+# Theme {{{
+# Colors {{{
 # Name: Sunset Orange [Red]
 # Hex: #FF605C
 #
@@ -315,7 +325,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mu
 # 
 # Name: Malachite [Green]
 # Hex: #00CA4E
-# --------------------+
+# }}}
 set $bg-color                    #DCDCDC
 set $inactive-bg-color           #303030
 set $urgent-bg-color             #FF605C
@@ -344,8 +354,9 @@ client.focused          $bg-color           $bg-color           $text-color     
 client.focused_inactive $inactive-bg-color  $inactive-bg-color  $active-text-color  $indicator
 client.unfocused        $inactive-bg-color  $inactive-bg-color  $active-text-color  $indicator
 client.urgent           $urgent-bg-color    $urgent-bg-color    $text-color         $indicator
+# }}}
 
-# ----------------------------------- i3bar -----------------------------------+
+# i3bar {{{
 bar {
     position bottom
 #    mode hide
@@ -362,3 +373,5 @@ bar {
     # status_command i3status
     status_command i3status | python3 ~/.config/i3/scripts/wrapper.py
 }
+# }}}
+# vim:foldmethod=marker:foldlevel=0
