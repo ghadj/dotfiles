@@ -17,7 +17,7 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'tpope/vim-eunuch'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ervandew/supertab'
-Plugin 'lervag/vimtex' {'for': 'tex'}
+Plugin 'lervag/vimtex', {'for': 'tex'}
 Plugin 'sirver/ultisnips'
 Plugin 'keelii/vim-snippets'
 Plugin 'itchyny/lightline.vim'
