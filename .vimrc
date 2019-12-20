@@ -19,6 +19,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'ervandew/supertab'
 Plugin 'lervag/vimtex'
 Plugin 'sirver/ultisnips'
+Plugin 'keelii/vim-snippets'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 " All of your Plugins must be added before the following line
@@ -61,8 +62,8 @@ let g:tex_conceal='abdmg'
 
 " Ultisnips 
 " Reference: https://github.com/SirVer/ultisnips
-let g:UltiSnipsExpandTrigger = '<c-space>'
-let g:UltiSnipsListSnippets = '<c-space>'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsListSnippets = '<s-tab>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
