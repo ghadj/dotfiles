@@ -55,7 +55,7 @@ let g:lightline = {
 " References: https://github.com/lervag/vimtex
 "             https://castel.dev/post/lecture-notes-1/
 let g:tex_flavor='latex'
-let g:vimtex_view_method='Evince'
+let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdmg'
