@@ -20,7 +20,7 @@ Plugin 'ervandew/supertab'
 Plugin 'lervag/vimtex'
 Plugin 'sirver/ultisnips'
 Plugin 'itchyny/lightline.vim'
-
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -97,7 +97,19 @@ let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " NerdTree
-autocmd VimEnter * NERDTree
+" to hide unwanted files
+  let NERDTreeIgnore = [ '__pycache__', '\.pyc$', '\.o$', '\.swp',  '*\.swp',  'node_modules/' ]
+" show hidden files
+  let NERDTreeShowHidden=1
+" autostart nerd-tree when start vim
+  autocmd vimenter * NERDTree
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:stdn_in") | NERDTree | endif
+" toggling nerd-tree using Ctrl-N
+  map <C-n> :NERDTreeToggle<CR>
+" size
+let g:NERDTreeWinSize=35
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -122,6 +134,7 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
+set shell=/bin/bash
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -195,7 +208,7 @@ endif
 
 
 " Add a bit extra margin to the left
-set foldcolumn=1
+set foldcolumn=0
 
 set number                     " Show current line number
 set relativenumber             " Show relative line numbers
