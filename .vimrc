@@ -17,11 +17,12 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'tpope/vim-eunuch'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ervandew/supertab'
-Plugin 'lervag/vimtex'
+Plugin 'lervag/vimtex' {'for': 'tex'}
 Plugin 'sirver/ultisnips'
 Plugin 'keelii/vim-snippets'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
