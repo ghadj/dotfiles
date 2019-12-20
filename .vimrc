@@ -205,6 +205,10 @@ hi CursorLine term=bold cterm=bold guibg=darkred
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
+" fold/unfold with +
+nnoremap + za
+vnoremap + zf
 " }}}
 
 " Colors and Fonts {{{
@@ -267,6 +271,9 @@ set tw=500
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
+
+" Automatically removing all trailing whitespace on write
+autocmd BufWritePre *.py,*.tex,*.txt,*.java %s/\s\+$//e
 " }}}
 
 " Visual mode related {{{
