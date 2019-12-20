@@ -1,11 +1,38 @@
-set number                     " Show current line number
-set relativenumber             " Show relative line numbers
+" Plugin setup 
+" set the runtime path to include Vundle and initialize 
+" Reference: https://github.com/VundleVim/Vundle.vim
+" Keep Plugin commands between vundle#begin/end.
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
 
-" Highlight current line
-set cursorline
-hi CursorLine term=bold cterm=bold guibg=darkred
+" Plugins
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'scrooloose/nerdtree'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'tpope/vim-eunuch'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'ervandew/supertab'
+Plugin 'lervag/vimtex'
+Plugin 'sirver/ultisnips'
+Plugin 'itchyny/lightline.vim'
 
-
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: 
 "       Amir Salihefendic — @amix3k
@@ -34,8 +61,44 @@ hi CursorLine term=bold cterm=bold guibg=darkred
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" LightLine
+" Reference: https://github.com/itchyny/lightline.vim
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
+
+" Vimtex 
+" References: https://github.com/lervag/vimtex
+"             https://castel.dev/post/lecture-notes-1/
+let g:tex_flavor='latex'
+let g:vimtex_view_method='Evince'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+" Ultisnips 
+" Reference: https://github.com/SirVer/ultisnips
+let g:UltiSnipsExpandTrigger = '<c-space>'
+let g:UltiSnipsListSnippets = '<c-space>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+
+" NerdTree
+autocmd VimEnter * NERDTree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
@@ -134,6 +197,16 @@ endif
 " Add a bit extra margin to the left
 set foldcolumn=1
 
+set number                     " Show current line number
+set relativenumber             " Show relative line numbers
+
+" Highlight current line
+set cursorline
+hi CursorLine term=bold cterm=bold guibg=darkred
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -150,6 +223,10 @@ try
     colorscheme jellybeans
 catch
 endtry
+
+" enable italics in jellybeans and make comments italic
+let g:jellybeans_use_term_italics = 1
+highlight Comment cterm=italic
 
 set background=dark
 
