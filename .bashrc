@@ -148,3 +148,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# fix a locale setting warning from Perl
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
