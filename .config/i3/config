@@ -298,7 +298,7 @@ bindsym XF86AudioPrev exec rhythmbox-client --previous
 bindsym XF86AudioNext exec rhythmbox-client --next
 
 # Other
-bindsym Print exec scrot -q 100 -e 'mv $f ~/Pictures/'
+bindsym Print exec scrot 'Screenshot_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
 
 # Sound
 # Raise Volume
