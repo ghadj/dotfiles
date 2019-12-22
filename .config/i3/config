@@ -263,7 +263,7 @@ bindsym $mod+Shift+k exec systemctl suspend
 # Touchpad config {{{ 
 # enable tap to click for touchpad 
 # Reference: https://computingforgeeks.com/enabling-tap-to-click-function-in-manjaro-via-the-command-line/
-set $touchpad "SYNA2393:00 06CB:7A13 Touchpad"
+set $touchpad "\"SYNA2393:00 06CB:7A13 Touchpad\""
 exec --no-startup-id xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
 exec --no-startup-id xinput set-prop "$touchpad" "libinput Disable While Typing Enabled" 0
