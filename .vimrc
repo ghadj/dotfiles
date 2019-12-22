@@ -85,19 +85,18 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " NerdTree {{{
 " to hide unwanted files
-  let NERDTreeIgnore = [ '__pycache__', '\.pyc$', '\.o$', '\.swp',  '*\.swp',  'node_modules/' ]
+let NERDTreeIgnore = [ '__pycache__', '\.pyc$', '\.o$', '\.swp',  '*\.swp',  'node_modules/' ]
 " show hidden files
-  let NERDTreeShowHidden=1
+let NERDTreeShowHidden=1
 " autostart nerd-tree when start vim
-  autocmd vimenter * NERDTree
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:stdn_in") | NERDTree | endif
+autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:stdn_in") | NERDTree | endif
 " toggling nerd-tree using Ctrl-N
-  map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 " size
 let g:NERDTreeWinSize=35
 " }}}
-
 " }}}
 
 " General {{{
@@ -245,6 +244,13 @@ set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
+
+" Spell check highlight
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline gui=undercurl guisp=#ff0000
+
+highlight clear SpellCap
+highlight SpellCap term=standout ctermfg=2 term=underline cterm=underline gui=undercurl guisp=#008000
 " }}}
 
 " Files, backups and undo {{{
