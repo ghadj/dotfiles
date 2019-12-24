@@ -95,7 +95,10 @@ autocmd VimEnter * if argc() == 0 && !exists("s:stdn_in") | NERDTree | endif
 " toggling nerd-tree using Ctrl-N
 map <C-n> :NERDTreeToggle<CR>
 " size
-let g:NERDTreeWinSize=35
+let g:NERDTreeWinSize=25
+" move to editor, instead of nerdtree
+autocmd VimEnter * wincmd w
+
 " }}}
 " }}}
 
@@ -278,9 +281,6 @@ set tw=500
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
-
-" Automatically removing all trailing whitespace on write
-autocmd BufWritePre *.py,*.tex,*.txt,*.java %s/\s\+$//e
 " }}}
 
 " Visual mode related {{{
@@ -369,7 +369,7 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" Delete trailing white space on save, useful for some filetypes ;)
+" Delete trailing whitespace on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
     let old_query = getreg('/')
@@ -379,7 +379,7 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+    autocmd BufWritePre *.tex,*.java,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 " }}}
 
