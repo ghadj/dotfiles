@@ -100,6 +100,33 @@ let g:NERDTreeWinSize=25
 autocmd VimEnter * wincmd w
 
 " }}}
+
+" NerdTree-Git-Plugin {{{
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "M",
+    \ "Staged"    : "S",
+    \ "Untracked" : "?",
+    \ "Renamed"   : "R",
+    \ "Unmerged"  : "UM",
+    \ "Deleted"   : "D",
+    \ "Dirty"     : "X",
+    \ "Clean"     : "C",
+    \ 'Ignored'   : '!',
+    \ "Unknown"   : "U"
+    \ }
+
+" }}}
+
+" VIM-gitgutter {{{
+let g:gitgutter_sign_added = '++'
+let g:gitgutter_sign_modified = '>>'
+let g:gitgutter_sign_removed = '~'
+let g:gitgutter_sign_removed_first_line = '^^'
+let g:gitgutter_sign_modified_removed = '~'
+
+highlight clear SignColumn
+call gitgutter#highlight#define_highlights()
+" }}}
 " }}}
 
 " General {{{
@@ -125,6 +152,10 @@ nmap <leader>w :w!<cr>
 command W w !sudo tee % > /dev/null
 
 set shell=/bin/bash
+
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
 " }}}
 
 " VIM user interface {{{
