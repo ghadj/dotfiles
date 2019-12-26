@@ -103,16 +103,16 @@ autocmd VimEnter * wincmd w
 
 " NerdTree-Git-Plugin {{{
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "M",
-    \ "Staged"    : "S",
-    \ "Untracked" : "?",
-    \ "Renamed"   : "R",
-    \ "Unmerged"  : "UM",
-    \ "Deleted"   : "D",
-    \ "Dirty"     : "X",
-    \ "Clean"     : "C",
-    \ 'Ignored'   : '!',
-    \ "Unknown"   : "U"
+    \ "Modified"  : " M ",
+    \ "Staged"    : " S ",
+    \ "Untracked" : " ? ",
+    \ "Renamed"   : " R ",
+    \ "Unmerged"  : " UM ",
+    \ "Deleted"   : " D ",
+    \ "Dirty"     : " X ",
+    \ "Clean"     : " C ",
+    \ 'Ignored'   : ' ! ',
+    \ "Unknown"   : " U "
     \ }
 
 " }}}
