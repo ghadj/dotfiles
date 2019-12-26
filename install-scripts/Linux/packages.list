@@ -1,3 +1,4 @@
+cmake3
 compton
 curl
 dunst
@@ -12,6 +13,7 @@ lxappearance
 network-manager
 python-dev
 python-pip
+python3-dev
 rofi
 scrot
 suckless-tools
