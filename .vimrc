@@ -78,10 +78,9 @@ let g:vimtex_toc_config = {
 
 " Ultisnips {{{
 " Reference: https://github.com/SirVer/ultisnips
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsListSnippets = '<s-tab>'
-let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+" UltiSnips triggering
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger = '<c-space>'
 " }}}
 
 " NerdTree {{{
@@ -132,9 +131,9 @@ call gitgutter#highlight#define_highlights()
 " YCM {{{
 " Reference: https://github.com/ycm-core/YouCompleteMe#linux-64-bit
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:SuperTabDefaultCompletionType = '<C-n>'
 " }}}
 
 " }}}
