@@ -94,7 +94,7 @@ autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:stdn_in") | NERDTree | endif
 " toggling nerd-tree using Ctrl-N
-map <C-n> :NERDTreeToggle<CR>
+nmap <C-n> :NERDTreeToggle<CR>
 " size
 let g:NERDTreeWinSize=25
 " move to editor, instead of nerdtree
@@ -128,6 +128,15 @@ let g:gitgutter_sign_modified_removed = '~'
 highlight clear SignColumn
 call gitgutter#highlight#define_highlights()
 " }}}
+
+" YCM {{{
+" Reference: https://github.com/ycm-core/YouCompleteMe#linux-64-bit
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+" }}}
+
 " }}}
 
 " General {{{
