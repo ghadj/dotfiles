@@ -130,6 +130,8 @@ alias jn='jupyter notebook'
 # outlook
 alias outlook='nohup google-chrome --app="https://outlook.live.com/mail/inbox" > /dev/null &'
 alias todo='nohup google-chrome --app="https://to-do.microsoft.com/" > /dev/null &'
+# re-enable touchpad
+alias touchpad='sudo rmmod hid_multitouch && sudo modprobe hid_multitouch'
 # END of my aliases
 eval $(thefuck --alias)
 
