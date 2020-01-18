@@ -26,9 +26,9 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export GDK_SCALE=0.9
-export GDK_DPI_SCALE=0.9
-export QT_AUTO_SCREEN_SCALE_FACTOR=0.6
+#export GDK_SCALE=0.9
+#export GDK_DPI_SCALE=0.9
+#export QT_AUTO_SCREEN_SCALE_FACTOR=0.6
 
 # tzselect
 TZ='Europe/Athens'; export TZ
