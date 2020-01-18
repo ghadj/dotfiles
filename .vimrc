@@ -23,7 +23,6 @@ Plugin 'keelii/vim-snippets'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'dracula/vim', { 'name': 'dracula' }
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -265,12 +264,12 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme pablo 
+    colorscheme jellybeans
 catch
 endtry
 
 " enable italics in jellybeans and make comments italic
-" let g:jellybeans_use_term_italics = 1
+let g:jellybeans_use_term_italics = 1
 highlight Comment cterm=italic
 
 set background=dark
