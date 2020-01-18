@@ -22,6 +22,7 @@ ln -sf $dotfiles_dir/.profile ~/.profile
 ln -sf $dotfiles_dir/.tmux.conf ~/.tmux.conf
 ln -sf $dotfiles_dir/.vimrc ~/.vimrc
 ln -sf $dotfiles_dir/.Xresources ~/.Xresources
+ln -sf $dotfiles_dir/.zshrc ~/.zshrc
 
 ln -sf $dotfiles_dir/.config/dunst ~/.config/dunst
 ln -sf $dotfiles_dir/.config/i3 ~/.config/i3
