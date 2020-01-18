@@ -138,7 +138,7 @@ dmenu.foreground:	        #d8dee9
 
 !--- 
 !!Xcursor.theme: cursor-theme
-Xcursor.size: 25
+!Xcursor.size: 25
 
 ! ------------------------------------------------------------------------------
 ! DPI
