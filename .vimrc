@@ -269,8 +269,8 @@ catch
 endtry
 
 " enable italics in jellybeans and make comments italic
-let g:jellybeans_use_term_italics = 1
-highlight Comment cterm=italic
+" let g:jellybeans_use_term_italics = 1
+" highlight Comment cterm=italic
 
 set background=dark
 
