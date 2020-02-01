@@ -108,3 +108,5 @@ source $HOME/.aliases
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
     exec tmux -2
 fi
+
+eval $(thefuck --alias)
