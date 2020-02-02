@@ -40,6 +40,9 @@ alias todo='nohup google-chrome --app="https://to-do.microsoft.com/" > /dev/null
 # google calendar
 alias googlecalendar='nohup google-chrome --app="https://calendar.google.com/calendar/r/month/" > /dev/null &'
 
+# facebook messanger
+alias messenger='nohup google-chrome --app="https://www.messenger.com/" > /dev/null &'
+
 # enable/disable touchpad
 alias disable_touchpad='sudo rmmod hid_multitouch'
 alias enable_touchpad='sudo modprobe hid_multitouch'
