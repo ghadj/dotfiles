@@ -110,3 +110,7 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 fi
 
 eval $(thefuck --alias)
+
+# fix a locale setting warning from Perl
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
