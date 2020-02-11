@@ -160,7 +160,7 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
-set shell=/bin/bash
+set shell=/bin/zsh
 
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
