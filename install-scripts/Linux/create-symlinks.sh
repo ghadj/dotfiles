@@ -9,6 +9,7 @@ sudo rm -rf ~/.profile > /dev/null 2>&1
 sudo rm -rf ~/.tmux.conf > /dev/null 2>&1
 sudo rm -rf ~/.vimrc > /dev/null 2>&1
 sudo rm -rf ~/.Xresources > /dev/null 2>&1
+sudo rm -rf ~/.zshrc > /dev/null 2>&1
 
 sudo rm -rf ~/.config/dunst > /dev/null 2>&1
 sudo rm -rf ~/.config/i3 > /dev/null 2>&1
