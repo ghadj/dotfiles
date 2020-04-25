@@ -23,6 +23,7 @@ Plugin 'keelii/vim-snippets'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'majutsushi/tagbar'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -134,6 +135,10 @@ call gitgutter#highlight#define_highlights()
 "let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 "let g:SuperTabDefaultCompletionType = '<C-n>'
+" }}}
+
+" Tagbar {{{
+nmap <C-m> :TagbarToggle<CR>
 " }}}
 
 " }}}
