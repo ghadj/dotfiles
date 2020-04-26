@@ -46,3 +46,24 @@ alias messenger='nohup google-chrome --app="https://www.messenger.com/" > /dev/n
 # enable/disable touchpad
 alias disable_touchpad='sudo rmmod hid_multitouch'
 alias enable_touchpad='sudo modprobe hid_multitouch'
+
+# git related
+alias ga='git add -A'
+alias gc='git commit -v'
+alias gcm='git commit -m '
+alias gaC='git add -A && gc'
+alias gac='git add -A && gc -m'
+alias pull='git pull'
+alias push='git push'
+alias gpf='git push -f'
+alias gp='echo "Use gpe (git push each)!"'
+alias gpe='git push-each'
+alias gpb='git push origin -u HEAD' # Push checked out branch to origin, create if doesn't yet exist
+alias gb='git branch'
+alias gbd='gb -d'
+alias gch='git checkout'
+alias gm='git merge '
+alias recap='git log --all --oneline --no-merges --author=$(git config user.name)'
+alias today='git log --since=00:00:00 --all --no-merges --oneline --author=$(git config user.name)'
+alias gs='git status '
+alias fd='git diff origin/master --name-only'
