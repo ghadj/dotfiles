@@ -274,10 +274,15 @@ catch
 endtry
 
 " enable italics in jellybeans and make comments italic
-" let g:jellybeans_use_term_italics = 1
+" let g:jellybeans_use_term_italics = 1 
 " highlight Comment cterm=italic
 
 set background=dark
+
+" Markdown related settings
+" avoid italics or highlighting
+hi! link markdownItalic Normal
+hi! link markdownBlockquote Normal
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -286,6 +291,9 @@ if has("gui_running")
     set t_Co=256
     set guitablabel=%M\ %t
 endif
+
+" set font
+set guifont=Monaco:h10 
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
