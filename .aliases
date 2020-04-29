@@ -1,4 +1,4 @@
-# enable color support of ls and also add handy aliases
+# Enable color support of ls
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -10,44 +10,47 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
+# ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
+# Add an "alert" alias for long running commands.
+# use -  sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 alias rm='rm -i'
 alias start_onedrive='nohup onedrive --monitor --confdir="~/.config/onedrive" & nohup onedrive --monitor --confdir="~/.config/onedrive_ucy" &'
 alias sync_onedrive='onedrive --confdir="~/.config/onedrive" ; onedrive --confdir="~/.config/onedrive_ucy" ;'
 
-# update on one command
-alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
+# File size
+alias fs="stat -f \"%z bytes\""
 
-# handy short cuts #
+# Package management
+alias addrepo="sudo apt-add-repository"
+alias update="sudo apt update && sudo apt list --upgradable"
+alias upgrade="sudo apt -qq update && sudo apt upgrade && sudo apt-get dist-upgrade"
+alias install="sudo apt install"
+alias remove="sudo apt remove"
+alias search="apt-cache search"
+
 alias h='history'
 alias j='jobs -l'
 
 # jupyter notebook
 alias jn='jupyter notebook'
 
-# outlook
+# Chrome apps
 alias outlook='nohup google-chrome --app="https://outlook.live.com/mail/inbox" > /dev/null &'
 alias todo='nohup google-chrome --app="https://to-do.microsoft.com/" > /dev/null &'
-
-# google calendar
 alias googlecalendar='nohup google-chrome --app="https://calendar.google.com/calendar/r/month/" > /dev/null &'
-
-# facebook messanger
 alias messenger='nohup google-chrome --app="https://www.messenger.com/" > /dev/null &'
 
-# enable/disable touchpad
+# Enable/disable touchpad
 alias disable_touchpad='sudo rmmod hid_multitouch'
 alias enable_touchpad='sudo modprobe hid_multitouch'
 
-# git related
+# Git related
 alias ga='git add -A'
 alias gc='git commit -v'
 alias gcm='git commit -m '
@@ -67,3 +70,26 @@ alias recap='git log --all --oneline --no-merges --author=$(git config user.name
 alias today='git log --since=00:00:00 --all --no-merges --oneline --author=$(git config user.name)'
 alias gs='git status '
 alias fd='git diff origin/master --name-only'
+
+# Extract archives - use: extract <file>
+# Credits to http://dotfiles.org/~pseup/.bashrc
+function extract() {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2) tar xjf $1 ;;
+            *.tar.gz) tar xzf $1 ;;
+            *.bz2) bunzip2 $1 ;;
+            *.rar) rar x $1 ;;
+            *.gz) gunzip $1 ;;
+            *.tar) tar xf $1 ;;
+            *.tbz2) tar xjf $1 ;;
+            *.tgz) tar xzf $1 ;;
+            *.zip) unzip $1 ;;
+            *.Z) uncompress $1 ;;
+            *.7z) 7z x $1 ;;
+            *) echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
