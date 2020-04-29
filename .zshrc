@@ -71,7 +71,15 @@ ZSH_THEME="candy"
 plugins=(git
          common-aliases
          python
-        )
+         colored-man-pages
+         zsh-syntax-highlighting
+         zsh-autosuggestions
+         zsh-completions
+)
+
+# zsh-completions - reload completion
+# reference: https://github.com/zsh-users/zsh-completions
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
