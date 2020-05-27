@@ -1,4 +1,4 @@
-# Enable color support of ls
+# Enable color support
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -93,3 +93,6 @@ function extract() {
         echo "'$1' is not a valid file"
     fi
 }
+
+# System suspend ignoring inhibitors and users
+alias sus='systemctl suspend -i'
