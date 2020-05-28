@@ -19,17 +19,6 @@ while [[ $# -gt 0 ]]; do
             rm -rf ~/.bashrc > /dev/null 2>&1
             ln -sf $dotfiles_dir/.bashrc ~/.bashrc
             ;;
-        i3)
-            cat i3.list | xargs sudo apt-get -y install
-
-            rm -rf ~/.config/dunst > /dev/null 2>&1
-            rm -rf ~/.config/i3 > /dev/null 2>&1
-            rm -rf ~/.config/i3status > /dev/null 2>&1
-
-            ln -sf $dotfiles_dir/.config/dunst ~/.config/dunst
-            ln -sf $dotfiles_dir/.config/i3 ~/.config/i3
-            ln -sf $dotfiles_dir/.config/i3status ~/.config/i3status
-            ;;
         onedrive)
             rm -rf ~/.config/onedrive > /dev/null 2>&1
             rm -rf ~/.config/onedrive_ucy > /dev/null 2>&1
