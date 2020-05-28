@@ -18,6 +18,8 @@ while [[ $# -gt 0 ]]; do
         bashrc)
             rm -rf ~/.bashrc > /dev/null 2>&1
             ln -sf $dotfiles_dir/.bashrc ~/.bashrc
+            rm -rf ~/.aliases > /dev/null 2>&1
+            ln -sf $dotfiles_dir/.aliases ~/.aliases
             ;;
         onedrive)
             rm -rf ~/.config/onedrive > /dev/null 2>&1
@@ -54,6 +56,8 @@ while [[ $# -gt 0 ]]; do
             sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
             rm -rf ~/.zshrc > /dev/null 2>&1
             ln -sf $dotfiles_dir/.zshrc ~/.zshrc
+            rm -rf ~/.aliases > /dev/null 2>&1
+            ln -sf $dotfiles_dir/.aliases ~/.aliases
             ;;
         *)
             echo "Unknown argument: $1"
