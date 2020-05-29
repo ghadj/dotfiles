@@ -18,11 +18,11 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ervandew/supertab'
 Plugin 'lervag/vimtex', {'for': 'tex'}
-Plugin 'sirver/ultisnips'
-Plugin 'keelii/vim-snippets'
+#Plugin 'sirver/ultisnips' 
+#Plugin 'keelii/vim-snippets'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'Valloric/YouCompleteMe'
+#Plugin 'Valloric/YouCompleteMe' # TODO require vim compiled with Python
 Plugin 'majutsushi/tagbar'
 
 " All of your Plugins must be added before the following line
