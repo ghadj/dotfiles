@@ -5,6 +5,8 @@ _Don't forget to backup your personal files before!_
 
 ## For settting up
 ```
+apt install git
+
 cd ~
 git clone -b termux https://github.com/ghadj/dotfiles.git
 sh dotfiles/install-scripts/setup.sh <option>
@@ -12,6 +14,8 @@ sh dotfiles/install-scripts/setup.sh <option>
 
 ## Dracula theme for termux [[source]](https://draculatheme.com/termux/)
 ```
+apt install wget
+
 cd ~
 wget https://github.com/dracula/termux/archive/master.zip
 unzip master
