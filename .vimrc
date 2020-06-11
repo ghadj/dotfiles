@@ -269,7 +269,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme jellybeans
+    colorscheme default
 catch
 endtry
 
