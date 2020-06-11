@@ -4,13 +4,13 @@ htop
 keepassxc
 latexmk
 network-manager
-python-dev
-python-pip
 python3-dev
 suckless-tools
 texlive
 texlive-base
 texlive-lang-greek
+texlive-latex-extra
+texlive-latex-recommended 
 tig
 tlp
 tlp-rdw
