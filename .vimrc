@@ -41,7 +41,6 @@ filetype plugin indent on    " required
 " Plugin settings {{{
 " LightLine {{{
 " Reference: https://github.com/itchyny/lightline.vim
-set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
@@ -269,7 +268,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme default
+    colorscheme jellybeans
 catch
 endtry
 
@@ -407,6 +406,9 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Status line {{{
 " Always show the status line
 set laststatus=2
+
+" Mode is shown in lightline
+set noshowmode
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
