@@ -96,3 +96,6 @@ function extract() {
 
 # System suspend ignoring inhibitors and users
 alias sus='systemctl suspend -i'
+
+# tmux workflow
+alias ide='tmux split-window -b -v -p 80 vim'
