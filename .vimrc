@@ -23,7 +23,8 @@ Plugin 'keelii/vim-snippets'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'majutsushi/tagbar'
+" Plugin 'majutsushi/tagbar'
+" Plugin 'dense-analysis/ale' " Asynchronous Lint Engine
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -118,13 +119,12 @@ let g:NERDTreeIndicatorMapCustom = {
 " }}}
 
 " VIM-gitgutter {{{
-let g:gitgutter_sign_added = '++'
-let g:gitgutter_sign_modified = '>>'
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
 let g:gitgutter_sign_removed = '~'
-let g:gitgutter_sign_removed_first_line = '^^'
+let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = '~'
 
-highlight clear SignColumn
 call gitgutter#highlight#define_highlights()
 " }}}
 
@@ -277,6 +277,9 @@ endtry
 " highlight Comment cterm=italic
 
 set background=dark
+
+" Remove backround from sign-column used in gutter plugin
+highlight clear SignColumn
 
 " Markdown related settings
 " avoid italics or highlighting
