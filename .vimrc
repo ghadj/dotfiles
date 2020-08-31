@@ -285,8 +285,8 @@ highlight clear SignColumn
 
 " Markdown related settings
 " avoid italics or highlighting
-hi! link markdownItalic Normal
-hi! link markdownBlockquote Normal
+" hi! link markdownItalic Normal
+" hi! link markdownBlockquote Normal
 
 " Set extra options when running in GUI mode
 if has("gui_running")
