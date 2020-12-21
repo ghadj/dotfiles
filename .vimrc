@@ -14,6 +14,8 @@ Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'scrooloose/nerdtree'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'arzg/vim-colors-xcode'
+Plugin 'junegunn/goyo.vim'
 Plugin 'tpope/vim-eunuch'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ervandew/supertab'
@@ -23,6 +25,7 @@ Plugin 'keelii/vim-snippets'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'dracula/vim', { 'as': 'dracula' }
 " Plugin 'majutsushi/tagbar'
 " Plugin 'dense-analysis/ale' " Asynchronous Lint Engine
 
@@ -138,6 +141,10 @@ call gitgutter#highlight#define_highlights()
 
 " Tagbar {{{
 nmap <C-m> :TagbarToggle<CR>
+" }}}
+
+" Goyo {{{
+let g:goyo_width = '50%'
 " }}}
 
 " }}}
@@ -345,6 +352,9 @@ set splitright
 
 " Turn-off splitting long lines
 set formatoptions-=tc
+
+" Set maximum text width
+set textwidth=80
 " }}}
 
 " Visual mode related {{{
