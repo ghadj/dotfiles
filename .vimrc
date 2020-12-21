@@ -46,7 +46,7 @@ filetype plugin indent on    " required
 " LightLine {{{
 " Reference: https://github.com/itchyny/lightline.vim
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'minimal',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -253,10 +253,6 @@ set foldcolumn=0
 set number                     " Show current line number
 set relativenumber             " Show relative line numbers
 
-" Highlight current line
-set cursorline
-hi CursorLine term=bold cterm=bold guibg=darkred
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -285,10 +281,17 @@ let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 highlight Comment cterm=italic
 
+let g:jellybeans_overrides = {
+\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+\}
+
 set background=dark
 
 " Remove backround from sign-column used in gutter plugin
 highlight clear SignColumn
+
+" Remove background from vertical split
+hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
 
 " Markdown related settings
 " avoid italics or highlighting
@@ -318,6 +321,12 @@ highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline gui=un
 
 highlight clear SpellCap
 highlight SpellCap term=standout ctermfg=2 term=underline cterm=underline gui=undercurl guisp=#008000
+
+" Highlight current line
+hi clear CursorLine
+set cursorline
+hi CursorLine gui=underline cterm=underline
+
 " }}}
 
 " Files, backups and undo {{{
