@@ -25,7 +25,7 @@ Plugin 'keelii/vim-snippets'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'dracula/vim', { 'as': 'dracula' }
+
 " Plugin 'majutsushi/tagbar'
 " Plugin 'dense-analysis/ale' " Asynchronous Lint Engine
 
@@ -271,27 +271,18 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme jellybeans
+    colorscheme boring
 catch
 endtry
 
-" enable italics in jellybeans and make comments italic
-let g:jellybeans_use_term_italics = 1 
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 highlight Comment cterm=italic
 
-let g:jellybeans_overrides = {
-\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
-\}
-
 set background=dark
 
-" Remove backround from sign-column used in gutter plugin
+" Remove background from sign-column used in gutter plugin
 highlight clear SignColumn
-
-" Remove background from vertical split
-hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
 
 " Markdown related settings
 " avoid italics or highlighting
@@ -316,16 +307,28 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 " Spell check highlight
-highlight clear SpellBad
-highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline gui=undercurl guisp=#ff0000
+"highlight clear SpellBad
+"highlight SpellBad term=standout ctermfg=0 term=underline cterm=underline gui=undercurl guisp=#ff0000
 
-highlight clear SpellCap
-highlight SpellCap term=standout ctermfg=2 term=underline cterm=underline gui=undercurl guisp=#008000
+"highlight clear SpellCap
+"highlight SpellCap term=standout ctermfg=0 term=underline cterm=underline gui=undercurl guisp=#008000
 
 " Highlight current line
 hi clear CursorLine
 set cursorline
 hi CursorLine gui=underline cterm=underline
+
+" Remove background from vertical split
+" Set split separator to Unicode box drawing character
+set encoding=utf8
+set fillchars=vert:│
+
+" Set split color
+highlight VertSplit cterm=NONE ctermfg=0 ctermbg=0
+
+" Highlighting search results
+highlight clear Search
+highlight Search cterm=underline ctermfg=grey ctermbg=black
 
 " }}}
 
