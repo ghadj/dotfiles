@@ -100,3 +100,6 @@ alias sus='systemctl suspend -i'
 # tmux workflow
 alias tmux='tmux -2'
 alias ide='tmux split-window -b -v -p 80 vim'
+
+# misc
+alias vim='vi'
