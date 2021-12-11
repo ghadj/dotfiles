@@ -1,3 +1,6 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
 " Plugin setup {{{ 
 " set the runtime path to include Vundle and initialize 
 " Reference: https://github.com/VundleVim/Vundle.vim
@@ -10,24 +13,20 @@ call vundle#begin()
 " Plugins
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'scrooloose/nerdtree'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'arzg/vim-colors-xcode'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'junegunn/goyo.vim'
-Plugin 'tpope/vim-eunuch'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'ervandew/supertab'
+"Plugin 'ervandew/supertab'
 Plugin 'lervag/vimtex', {'for': 'tex'}
 Plugin 'sirver/ultisnips'
 Plugin 'keelii/vim-snippets'
-Plugin 'itchyny/lightline.vim'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'majutsushi/tagbar'
 
-" Plugin 'majutsushi/tagbar'
-" Plugin 'dense-analysis/ale' " Asynchronous Lint Engine
+" Themes
+"Plugin 'tomasiser/vim-code-dark'
+Plugin 'arzg/vim-colors-xcode'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -43,19 +42,6 @@ filetype plugin indent on    " required
 " }}}
 
 " Plugin settings {{{
-" LightLine {{{
-" Reference: https://github.com/itchyny/lightline.vim
-let g:lightline = {
-      \ 'colorscheme': 'minimal',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
-" }}}
 
 " Vimtex {{{ 
 " References: https://github.com/lervag/vimtex
@@ -92,8 +78,6 @@ let g:UltiSnipsExpandTrigger = '<c-space>'
 let NERDTreeIgnore = [ '__pycache__', '\.pyc$', '\.o$', '\.swp',  '*\.swp',  'node_modules/' ]
 " show hidden files
 let NERDTreeShowHidden=1
-" autostart nerd-tree when start vim
-autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:stdn_in") | NERDTree | endif
 " toggling nerd-tree using Ctrl-N
@@ -106,7 +90,7 @@ autocmd VimEnter * wincmd w
 " }}}
 
 " NerdTree-Git-Plugin {{{
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : " M ",
     \ "Staged"    : " S ",
     \ "Untracked" : " ? ",
@@ -137,6 +121,15 @@ call gitgutter#highlight#define_highlights()
 "let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 "let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" Close preview window
+"let g:SuperTabClosePreviewOnPopupClose = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" Disable popup window
+let g:ycm_auto_hover=''
+
 " }}}
 
 " Tagbar {{{
@@ -144,7 +137,9 @@ nmap <C-m> :TagbarToggle<CR>
 " }}}
 
 " Goyo {{{
-let g:goyo_width = '50%'
+let g:goyo_width = '100'
+let g:goyo_hight = '50'
+nmap <C-g> :Goyo<CR>
 " }}}
 
 " }}}
@@ -182,14 +177,16 @@ set path+=**
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
+" Enable mouse
+set mouse=a
+
 " Avoid garbled characters in Chinese language windows OS
 let $LANG='en' 
 set langmenu=en
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
 
 " Turn on the Wild menu
 set wildmenu
+set wildmode=longest:full,full
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -248,6 +245,8 @@ endif
 
 
 " Add a bit extra margin to the left
+set foldmethod=syntax
+
 set foldcolumn=0
 
 set number                     " Show current line number
@@ -271,7 +270,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme boring
+    colorscheme default
 catch
 endtry
 
@@ -295,10 +294,11 @@ if has("gui_running")
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
+    set guioptions-=r
 endif
 
 " set font
-set guifont=Monaco:h10 
+set guifont=Jetbrains\ Mono\ Light\ 12 
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -307,11 +307,11 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 " Spell check highlight
-"highlight clear SpellBad
-"highlight SpellBad term=standout ctermfg=0 term=underline cterm=underline gui=undercurl guisp=#ff0000
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=9 term=underline cterm=underline gui=undercurl guisp=#ff0000
 
-"highlight clear SpellCap
-"highlight SpellCap term=standout ctermfg=0 term=underline cterm=underline gui=undercurl guisp=#008000
+highlight clear SpellCap
+highlight SpellCap term=standout ctermfg=12 term=underline cterm=underline gui=undercurl guisp=#008000
 
 " Highlight current line
 hi clear CursorLine
@@ -324,11 +324,11 @@ set encoding=utf8
 set fillchars=vert:│
 
 " Set split color
-highlight VertSplit cterm=NONE ctermfg=0 ctermbg=0
+"highlight VertSplit cterm=NONE ctermfg=None ctermbg=None
 
 " Highlighting search results
 highlight clear Search
-highlight Search cterm=underline ctermfg=grey ctermbg=black
+highlight Search cterm=underline ctermfg=11 ctermbg=None
 
 " }}}
 
@@ -377,9 +377,17 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " }}}
 
 " Moving around, tabs, windows and buffers {{{
+" Map ö/ä to the beginning and end of line
+map ö <Home>
+map ä <End>
+
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
 map <c-space> ?
+" Search in all files in current directory
+map <leader>f :vimgrep //gj **/*<left><left><left><left><left><left><left><left>
+
+" 
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -411,7 +419,6 @@ let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
-
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
@@ -434,8 +441,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Always show the status line
 set laststatus=2
 
-" Mode is shown in lightline
-set noshowmode
+set showmode
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
@@ -480,7 +486,7 @@ map <leader>ss :setlocal spell!<cr>
 map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
-map <leader>s? z=
+map <leader>sr z=
 " }}}
 
 " Misc {{{
@@ -495,6 +501,15 @@ map <leader>x :e ~/buffer.md<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
+
+" Auto-Complete pairs
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 " }}}
 
 " Helper functions {{{
