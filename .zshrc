@@ -75,6 +75,7 @@ plugins=(git
          zsh-syntax-highlighting
          zsh-autosuggestions
          zsh-completions
+         vi-mode
 )
 
 # zsh-completions - reload completion
@@ -144,3 +145,13 @@ export HOST=$(hostname)
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+
+# Enable vim mode
+bindkey -v
+
+# Reduce delay of transition between modes (ESC)
+export KEYTIMEOUT=1
+
+# Show command mode
+export VI_MODE_SET_CURSOR=true
