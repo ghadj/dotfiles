@@ -23,6 +23,7 @@ Plugin 'sirver/ultisnips'
 Plugin 'keelii/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
+Plugin 'jonstoler/werewolf.vim'
 
 " Themes
 "Plugin 'tomasiser/vim-code-dark'
@@ -49,9 +50,9 @@ filetype plugin indent on    " required
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
-set conceallevel=1
-let g:tex_conceal='abdmg'
-let g:vimtex_latexmk_continuous=1
+"set conceallevel=1
+"let g:tex_conceal='abdmg'
+"let g:vimtex_latexmk_continuous=1
 " TOC settings 
 " enable with :VimtexTocOpen
 let g:vimtex_toc_config = {
@@ -77,9 +78,11 @@ let g:UltiSnipsExpandTrigger = '<c-space>'
 " to hide unwanted files
 let NERDTreeIgnore = [ '__pycache__', '\.pyc$', '\.o$', '\.swp',  '*\.swp',  'node_modules/' ]
 " show hidden files
-let NERDTreeShowHidden=1
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:stdn_in") | NERDTree | endif
+"let NERDTreeShowHidden=1
+" show on startup
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:stdn_in") | NERDTree | endif
+
 " toggling nerd-tree using Ctrl-N
 nmap <C-n> :NERDTreeToggle<CR>
 " size
@@ -142,6 +145,16 @@ let g:goyo_hight = '50'
 nmap <C-g> :Goyo<CR>
 " }}}
 
+" Werewolf {{{
+let g:werewolf_day_themes = ['xcodelight']
+let g:werewolf_night_themes = ['xcodedark']
+
+" default 8, use 24 hour format
+let g:werewolf_day_start = 8
+" default 20, 24 hour format""
+let g:werewolf_day_end = 19
+" }}}
+
 " }}}
 
 " General {{{
@@ -171,6 +184,9 @@ set shell=/bin/zsh
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
 set path+=**
+
+" Set default clibboard register
+set clipboard=unnamedplus "Linux
 " }}}
 
 " VIM user interface {{{
@@ -270,7 +286,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme default
+    colorscheme xcodelight
 catch
 endtry
 
@@ -278,7 +294,7 @@ let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 highlight Comment cterm=italic
 
-set background=dark
+"set background=dark
 
 " Remove background from sign-column used in gutter plugin
 highlight clear SignColumn
@@ -307,16 +323,16 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 " Spell check highlight
-highlight clear SpellBad
-highlight SpellBad term=standout ctermfg=9 term=underline cterm=underline gui=undercurl guisp=#ff0000
+"highlight clear SpellBad
+"highlight SpellBad term=standout ctermfg=9 term=underline cterm=underline gui=undercurl guisp=#ff0000
 
-highlight clear SpellCap
-highlight SpellCap term=standout ctermfg=12 term=underline cterm=underline gui=undercurl guisp=#008000
+"highlight clear SpellCap
+"highlight SpellCap term=standout ctermfg=12 term=underline cterm=underline gui=undercurl guisp=#008000
 
 " Highlight current line
-hi clear CursorLine
+"hi CursorLine
 set cursorline
-hi CursorLine gui=underline cterm=underline
+"hi CursorLine gui=underline cterm=underline
 
 " Remove background from vertical split
 " Set split separator to Unicode box drawing character
@@ -327,8 +343,8 @@ set fillchars=vert:│
 "highlight VertSplit cterm=NONE ctermfg=None ctermbg=None
 
 " Highlighting search results
-highlight clear Search
-highlight Search cterm=underline ctermfg=11 ctermbg=None
+"highlight clear Search
+"highlight Search cterm=underline ctermfg=11 ctermbg=None
 
 " }}}
 
@@ -482,16 +498,26 @@ endif
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
+" Add Unix dictionary for .tex .md and .txt files
+au BufReadPost,BufNewFile *.txt,*.md,*.tex setlocal dict+=/usr/share/dict/words
+
+" Add dictionary to autocomplete
+set complete+=k
+
 " Shortcuts using <leader>
 map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>sr z=
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " }}}
 
 " Misc {{{
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+"noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Execute make command in the background
+map <leader>m :silent make\|redraw!\|cc<CR>
 
 " Quickly open a buffer for scribble
 map <leader>q :e ~/buffer<cr>
