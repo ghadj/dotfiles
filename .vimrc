@@ -23,10 +23,10 @@ Plugin 'sirver/ultisnips'
 Plugin 'keelii/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
-Plugin 'jonstoler/werewolf.vim'
+"Plugin 'jonstoler/werewolf.vim'
 
 " Themes
-"Plugin 'tomasiser/vim-code-dark'
+Plugin 'tomasiser/vim-code-dark'
 Plugin 'arzg/vim-colors-xcode'
 
 " All of your Plugins must be added before the following line
@@ -286,7 +286,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme xcodelight
+    colorscheme codedark
 catch
 endtry
 
@@ -403,7 +403,8 @@ map <c-space> ?
 " Search in all files in current directory
 map <leader>f :vimgrep //gj **/*<left><left><left><left><left><left><left><left>
 
-" 
+" See the buffer list and select buffer by entering the number + Enter
+nnoremap <leader>b :ls<cr>:b
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
