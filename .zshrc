@@ -76,6 +76,7 @@ plugins=(git
          zsh-autosuggestions
          zsh-completions
          vi-mode
+         fzf
 )
 
 # zsh-completions - reload completion
@@ -155,3 +156,5 @@ export KEYTIMEOUT=1
 
 # Show command mode
 export VI_MODE_SET_CURSOR=true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
