@@ -72,16 +72,18 @@ plugins=(git
          common-aliases
          python
          colored-man-pages
-         zsh-syntax-highlighting
          zsh-autosuggestions
          zsh-completions
          vi-mode
          fzf
+         zsh-syntax-highlighting
 )
 
 # zsh-completions - reload completion
 # reference: https://github.com/zsh-users/zsh-completions
 autoload -U compinit && compinit
+
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
 
@@ -119,34 +121,10 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
     exec tmux -2
 fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/george/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/george/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/george/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/george/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# fix a locale setting warning from Perl
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
 # fix colors & italics
 export TERM="xterm-256color"
 
 export HOST=$(hostname)
-
-# Install Ruby Gems to ~/gems
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
 
 # Enable vim mode
 bindkey -v
@@ -156,5 +134,3 @@ export KEYTIMEOUT=1
 
 # Show command mode
 export VI_MODE_SET_CURSOR=true
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

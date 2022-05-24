@@ -13,21 +13,7 @@ call vundle#begin()
 " Plugins
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'junegunn/goyo.vim'
 Plugin 'airblade/vim-gitgutter'
-"Plugin 'ervandew/supertab'
-Plugin 'lervag/vimtex', {'for': 'tex'}
-Plugin 'sirver/ultisnips'
-Plugin 'keelii/vim-snippets'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'majutsushi/tagbar'
-"Plugin 'jonstoler/werewolf.vim'
-
-" Themes
-Plugin 'tomasiser/vim-code-dark'
-Plugin 'arzg/vim-colors-xcode'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -44,116 +30,15 @@ filetype plugin indent on    " required
 
 " Plugin settings {{{
 
-" Vimtex {{{ 
-" References: https://github.com/lervag/vimtex
-"             https://castel.dev/post/lecture-notes-1/
-let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
-"set conceallevel=1
-"let g:tex_conceal='abdmg'
-"let g:vimtex_latexmk_continuous=1
-" TOC settings 
-" enable with :VimtexTocOpen
-let g:vimtex_toc_config = {
-      \ 'name' : 'TOC',
-      \ 'layers' : ['content', 'todo', 'include'],
-      \ 'resize' : 1,
-      \ 'split_width' : 50,
-      \ 'todo_sorted' : 0,
-      \ 'show_help' : 1,
-      \ 'show_numbers' : 1,
-      \ 'mode' : 2,
-      \}
-" }}}
-
-" Ultisnips {{{
-" Reference: https://github.com/SirVer/ultisnips
-" UltiSnips triggering
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsExpandTrigger = '<c-space>'
-" }}}
-
-" NerdTree {{{
-" to hide unwanted files
-let NERDTreeIgnore = [ '__pycache__', '\.pyc$', '\.o$', '\.swp',  '*\.swp',  'node_modules/' ]
-" show hidden files
-"let NERDTreeShowHidden=1
-" show on startup
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:stdn_in") | NERDTree | endif
-
+" Netrw  {{{
 " toggling nerd-tree using Ctrl-N
-nmap <C-n> :NERDTreeToggle<CR>
-" size
-let g:NERDTreeWinSize=25
-" move to editor, instead of nerdtree
-autocmd VimEnter * wincmd w
+nmap <C-n> :Lexplore<CR>
 
-" }}}
-
-" NerdTree-Git-Plugin {{{
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : " M ",
-    \ "Staged"    : " S ",
-    \ "Untracked" : " ? ",
-    \ "Renamed"   : " R ",
-    \ "Unmerged"  : " UM ",
-    \ "Deleted"   : " D ",
-    \ "Dirty"     : " X ",
-    \ "Clean"     : " C ",
-    \ 'Ignored'   : ' ! ',
-    \ "Unknown"   : " U "
-    \ }
-
-" }}}
-
-" VIM-gitgutter {{{
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '>'
-let g:gitgutter_sign_removed = '~'
-let g:gitgutter_sign_removed_first_line = '^'
-let g:gitgutter_sign_modified_removed = '~'
-
-call gitgutter#highlight#define_highlights()
-" }}}
-
-" YCM {{{
-" Reference: https://github.com/ycm-core/YouCompleteMe#linux-64-bit
-" make YCM compatible with UltiSnips (using supertab)
-"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-"let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" Close preview window
-"let g:SuperTabClosePreviewOnPopupClose = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-
-" Disable popup window
-let g:ycm_auto_hover=''
-
-" }}}
-
-" Tagbar {{{
-nmap <C-m> :TagbarToggle<CR>
-" }}}
-
-" Goyo {{{
-let g:goyo_width = '100'
-let g:goyo_hight = '50'
-nmap <C-g> :Goyo<CR>
-" }}}
-
-" Werewolf {{{
-let g:werewolf_day_themes = ['xcodelight']
-let g:werewolf_night_themes = ['xcodedark']
-
-" default 8, use 24 hour format
-let g:werewolf_day_start = 8
-" default 20, 24 hour format""
-let g:werewolf_day_end = 19
-" }}}
+let g:netrw_banner = 0
+let g:netrw_winsize = 20
+nnoremap <leader>dd :Lexplore %:p:h<CR>
+nnoremap <leader>da :Lexplore<CR>
+"}}}
 
 " }}}
 
@@ -276,78 +161,6 @@ nnoremap + za
 vnoremap + zf
 " }}}
 
-" Colors and Fonts {{{
-" Enable syntax highlighting
-syntax enable 
-
-" Enable 256 colors palette in Gnome Terminal
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
-
-try
-    colorscheme codedark
-catch
-endtry
-
-let &t_ZH="\e[3m"
-let &t_ZR="\e[23m"
-highlight Comment cterm=italic
-
-"set background=dark
-
-" Remove background from sign-column used in gutter plugin
-highlight clear SignColumn
-
-" Markdown related settings
-" avoid italics or highlighting
-" hi! link markdownItalic Normal
-" hi! link markdownBlockquote Normal
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions-=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-    set guioptions-=r
-endif
-
-" set font
-set guifont=Jetbrains\ Mono\ Light\ 12 
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
-
-" Spell check highlight
-"highlight clear SpellBad
-"highlight SpellBad term=standout ctermfg=9 term=underline cterm=underline gui=undercurl guisp=#ff0000
-
-"highlight clear SpellCap
-"highlight SpellCap term=standout ctermfg=12 term=underline cterm=underline gui=undercurl guisp=#008000
-
-" Highlight current line
-"hi CursorLine
-set cursorline
-"hi CursorLine gui=underline cterm=underline
-
-" Remove background from vertical split
-" Set split separator to Unicode box drawing character
-set encoding=utf8
-set fillchars=vert:│
-
-" Set split color
-"highlight VertSplit cterm=NONE ctermfg=None ctermbg=None
-
-" Highlighting search results
-"highlight clear Search
-"highlight Search cterm=underline ctermfg=11 ctermbg=None
-
-" }}}
-
 " Files, backups and undo {{{
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 " set nobackup
@@ -454,16 +267,6 @@ endtry
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " }}}
 
-" Status line {{{
-" Always show the status line
-set laststatus=2
-
-set showmode
-
-" Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-" }}}
-
 " Editing mappings {{{
 " Remap VIM 0 to first non-blank character
 map 0 ^
@@ -539,55 +342,68 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 " }}}
 
-" Helper functions {{{
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    endif
-    return ''
-endfunction
+" Colors and Fonts {{{
+" Enable syntax highlighting
+syntax enable 
 
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
+" Enable 256 colors palette in Gnome Terminal
+if $COLORTERM == 'gnome-terminal'
+    set t_Co=256
+endif
 
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
+" Markdown related settings
+" avoid italics or highlighting
+hi! link markdownItalic Normal
+hi! link markdownBlockquote Normal
 
-    if bufnr("%") == l:currentBufNum
-        new
-    endif
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=T
+    set guioptions-=e
+    set t_Co=256
+    set guitablabel=%M\ %t
+    set guioptions-=r
+endif
 
-    if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
-    endif
-endfunction
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
 
-function! CmdLine(str)
-    call feedkeys(":" . a:str)
-endfunction 
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
 
-function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
+" Spell check highlight
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=9 term=underline cterm=underline gui=undercurl guisp=#ff0000
 
-    let l:pattern = escape(@", "\\/.*'$^~[]")
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
+highlight clear SpellCap
+highlight SpellCap term=standout ctermfg=12 term=underline cterm=underline gui=undercurl guisp=#008000
 
-    if a:direction == 'gv'
-        call CmdLine("Ack '" . l:pattern . "' " )
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    endif
+" Highlight current line
+"hi CursorLine
+set cursorline
+hi CursorLine gui=underline cterm=underline
 
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
+" Remove background from vertical split
+" Set split separator to Unicode box drawing character
+set encoding=utf8
+set fillchars=vert:│
+
+" Set split color
+highlight VertSplit cterm=NONE ctermfg=None ctermbg=None
+
+set background=dark
+
+" Remove background from sign-column used in gutter plugin
+highlight clear SignColumn
+
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+highlight Comment cterm=italic
+
+" Highlighting search results
+"highlight clear Search
+"highlight Search cterm=underline ctermfg=11 ctermbg=None
+
 " }}}
+
 " vim:foldmethod=marker:foldlevel=0
