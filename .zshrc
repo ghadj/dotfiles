@@ -134,3 +134,10 @@ export KEYTIMEOUT=1
 
 # Show command mode
 export VI_MODE_SET_CURSOR=true
+
+# Function to create and enter directory
+mkcdir ()
+{
+    mkdir -p -- "$1" &&
+        cd -P -- "$1"
+}
