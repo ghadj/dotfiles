@@ -62,7 +62,7 @@ nmap <leader>w :w!<cr>
 
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+"command W w !sudo tee % > /dev/null
 
 set shell=/bin/zsh
 
@@ -344,7 +344,9 @@ inoremap {;<CR> {<CR>};<ESC>O
 
 " Colors and Fonts {{{
 " Enable syntax highlighting
-syntax enable 
+colorscheme boring
+
+"syntax enable 
 
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
