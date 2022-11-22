@@ -344,7 +344,7 @@ inoremap {;<CR> {<CR>};<ESC>O
 
 " Colors and Fonts {{{
 " Enable syntax highlighting
-colorscheme boring
+colorscheme default
 
 "syntax enable 
 

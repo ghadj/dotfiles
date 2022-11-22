@@ -71,7 +71,6 @@ ZSH_THEME="candy"
 plugins=(git
          common-aliases
          python
-         colored-man-pages
          zsh-autosuggestions
          zsh-completions
          vi-mode
@@ -115,12 +114,6 @@ source $ZSH/oh-my-zsh.sh
 
 source $HOME/.aliases
 
-# when shell starts execute tmux
-# make sure that (1) tmux exists on the system, (2) we're in an interactive shell, and (3) tmux doesn't try to run within itself
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-    exec tmux -2
-fi
-
 # fix colors & italics
 export TERM="xterm-256color"
 
@@ -134,10 +127,3 @@ export KEYTIMEOUT=1
 
 # Show command mode
 export VI_MODE_SET_CURSOR=true
-
-# Function to create and enter directory
-mkcdir ()
-{
-    mkdir -p -- "$1" &&
-        cd -P -- "$1"
-}
