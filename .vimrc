@@ -340,6 +340,15 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+" Movement in insert mode
+inoremap <C-h> <C-o>h
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-l> <C-o>l
+" Line-wise scrolling
+inoremap <C-e> <C-o><C-e>
+inoremap <C-y> <C-o><C-y>
 " }}}
 
 " Colors and Fonts {{{
