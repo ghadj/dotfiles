@@ -8,7 +8,7 @@ export ZSH="/home/george/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="candy"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -74,7 +74,7 @@ plugins=(git
          zsh-autosuggestions
          zsh-completions
          vi-mode
-         fzf
+#         fzf
          zsh-syntax-highlighting
          virtualenv
 )
@@ -129,18 +129,31 @@ export KEYTIMEOUT=1
 # Show command mode
 export VI_MODE_SET_CURSOR=true
 
+# ROS
+source /opt/ros/noetic/setup.zsh
+export ROS_HOSTNAME=localhost
+export ROS_MASTER_URI=http://localhost:11311
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/george/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/george/.miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/george/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/george/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/george/.miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/george/.miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/george/miniconda3/bin:$PATH"
+        export PATH="/home/george/.miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# Start tmux
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
+# Add directory to path (used by virtualenv)
+export PATH="/home/george/.local/bin:$PATH"
 
