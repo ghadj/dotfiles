@@ -14,6 +14,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -417,4 +418,11 @@ highlight Comment cterm=italic
 
 " }}}
 
+" VS-code integration {{{
+if exists('g:vscode')
+    " VSCode extension
+else
+    " ordinary neovim
+endif
+" }}}
 " vim:foldmethod=marker:foldlevel=0
