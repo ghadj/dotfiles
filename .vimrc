@@ -297,6 +297,12 @@ endfun
 if has("autocmd")
     autocmd BufWritePre *.tex,*.java,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
+
+" Use the black hole register to delete something
+" Use "_dP to paste something and keep it available for further pasting
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+xnoremap <leader>p "_dP
 " }}}
 
 " Spell checking {{{
