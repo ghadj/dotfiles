@@ -298,7 +298,6 @@ map <leader>sr z=
 " }}}
 
 " Misc {{{
-
 " Execute make command in the background
 map <leader>m :silent make\|redraw!\|cc<CR>
 
