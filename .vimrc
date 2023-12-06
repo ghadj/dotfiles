@@ -2,8 +2,15 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Plugin setup {{{ 
-" set the runtime path to include Vundle and initialize 
+" Set the runtime path to include Vundle and initialize 
 " Reference: https://github.com/VundleVim/Vundle.vim
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
 " Keep Plugin commands between vundle#begin/end.
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -12,35 +19,28 @@ call vundle#begin()
 
 " Plugins
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 " }}}
 
 " Plugin settings {{{
 
-" Netrw  {{{
-" toggling nerd-tree using Ctrl-N
-nmap <C-n> :Lexplore<CR>
+" }}}
 
+" Netrw  {{{
 let g:netrw_banner = 0
 let g:netrw_winsize = 20
-nnoremap <leader>dd :Lexplore %:p:h<CR>
-nnoremap <leader>da :Lexplore<CR>
-"}}}
 
+" toggling tree using Ctrl-N from CWD
+nmap <C-n> :Lexplore<CR>
+
+" toggling tree using Shift+Ctrl-N from current directory
+nnoremap <leader><C-n> :Lexplore %:p:h<CR>
 " }}}
 
 " General {{{
@@ -63,7 +63,7 @@ nmap <leader>w :w!<cr>
 
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
-"command W w !sudo tee % > /dev/null
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 set shell=/bin/zsh
 
@@ -71,8 +71,8 @@ set shell=/bin/zsh
 " Provides tab-completion for all file-related tasks
 set path+=**
 
-" Set default clibboard register
-set clipboard=unnamedplus "Linux
+" Set default clibboard register (Linux)
+set clipboard=unnamedplus 
 " }}}
 
 " VIM user interface {{{
@@ -81,10 +81,6 @@ set so=7
 
 " Enable mouse
 set mouse=a
-
-" Avoid garbled characters in Chinese language windows OS
-let $LANG='en' 
-set langmenu=en
 
 " Turn on the Wild menu
 set wildmenu
@@ -131,6 +127,7 @@ set magic
 
 " Show matching brackets when text indicator is over them
 set showmatch 
+
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -140,12 +137,6 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Properly disable sound on errors on MacVim
-if has("gui_macvim")
-    autocmd GUIEnter * set vb t_vb=
-endif
-
-
 " Add a bit extra margin to the left
 set foldmethod=syntax
 
@@ -154,19 +145,9 @@ set foldcolumn=0
 set number                     " Show current line number
 set relativenumber             " Show relative line numbers
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
 " fold/unfold with +
 nnoremap + za
 vnoremap + zf
-" }}}
-
-" Files, backups and undo {{{
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-" set nobackup
-" set nowb
-" set noswapfile
 " }}}
 
 " Text, tab and indent related {{{
@@ -201,19 +182,14 @@ set textwidth=80
 
 " Visual mode related {{{
 " Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 " }}}
 
 " Moving around, tabs, windows and buffers {{{
-" Map ö/ä to the beginning and end of line
-map ö <Home>
-map ä <End>
-
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
 map <c-space> ?
+
 " Search in all files in current directory
 map <leader>f :vimgrep //gj **/*<left><left><left><left><left><left><left><left>
 
@@ -230,20 +206,19 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Close the current buffer
-map <leader>bd :Bclose<cr>:tabclose<cr>gT
+map <leader>bc :Bclose<cr>:tabclose<cr>gT
 
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
 
-map <leader>l :bnext<cr>
-map <leader>h :bprevious<cr>
+map <leader>bn :bnext<cr>
+map <leader>bp :bprevious<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -264,7 +239,7 @@ try
 catch
 endtry
 
-" Return to last edit position when opening files (You want this!)
+" Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " }}}
 
@@ -285,7 +260,7 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" Delete trailing whitespace on save, useful for some filetypes ;)
+" Delete trailing whitespace on save, useful for some filetypes
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
     let old_query = getreg('/')
@@ -320,12 +295,9 @@ map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>sr z=
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " }}}
 
 " Misc {{{
-" Remove the Windows ^M - when the encodings gets messed up
-"noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Execute make command in the background
 map <leader>m :silent make\|redraw!\|cc<CR>
@@ -353,6 +325,7 @@ inoremap <C-h> <C-o>h
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
+
 " Line-wise scrolling
 inoremap <C-e> <C-o><C-e>
 inoremap <C-y> <C-o><C-y>
@@ -362,26 +335,12 @@ inoremap <C-y> <C-o><C-y>
 " Enable syntax highlighting
 colorscheme default
 
-"syntax enable 
-
-" Enable 256 colors palette in Gnome Terminal
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
+syntax enable 
 
 " Markdown related settings
 " avoid italics or highlighting
 hi! link markdownItalic Normal
 hi! link markdownBlockquote Normal
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions-=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-    set guioptions-=r
-endif
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -397,9 +356,7 @@ highlight clear SpellCap
 highlight SpellCap term=standout ctermfg=12 term=underline cterm=underline gui=undercurl guisp=#008000
 
 " Highlight current line
-"hi CursorLine
 set cursorline
-hi CursorLine gui=underline cterm=underline
 
 " Remove background from vertical split
 " Set split separator to Unicode box drawing character
@@ -409,7 +366,7 @@ set fillchars=vert:│
 " Set split color
 highlight VertSplit cterm=NONE ctermfg=None ctermbg=None
 
-set background=dark
+set background=light
 
 " Remove background from sign-column used in gutter plugin
 highlight clear SignColumn
@@ -417,11 +374,6 @@ highlight clear SignColumn
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 highlight Comment cterm=italic
-
-" Highlighting search results
-"highlight clear Search
-"highlight Search cterm=underline ctermfg=11 ctermbg=None
-
 " }}}
 
 " VS-code integration {{{

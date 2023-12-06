@@ -2,9 +2,8 @@
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -20,8 +19,6 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 alias rm='rm -i'
-alias start_onedrive='nohup onedrive --monitor --confdir="~/.config/onedrive" & nohup onedrive --monitor --confdir="~/.config/onedrive_ucy" &'
-alias sync_onedrive='onedrive --confdir="~/.config/onedrive" ; onedrive --confdir="~/.config/onedrive_ucy" ;'
 
 # File size
 alias fs="stat -f \"%z bytes\""
@@ -37,19 +34,6 @@ alias search="apt-cache search"
 alias h='history'
 alias j='jobs -l'
 
-# jupyter notebook
-alias jn='jupyter notebook'
-
-# Chrome apps
-alias outlook='nohup google-chrome --app="https://outlook.live.com/mail/inbox" > /dev/null &'
-alias todo='nohup google-chrome --app="https://to-do.microsoft.com/" > /dev/null &'
-alias googlecalendar='nohup google-chrome --app="https://calendar.google.com/calendar/r/month/" > /dev/null &'
-alias messenger='nohup google-chrome --app="https://www.messenger.com/" > /dev/null &'
-
-# Enable/disable touchpad
-alias disable_touchpad='sudo rmmod hid_multitouch'
-alias enable_touchpad='sudo modprobe hid_multitouch'
-
 # Git related
 alias ga='git add -A'
 alias gc='git commit -v'
@@ -59,11 +43,9 @@ alias gac='git add -A && gc -m'
 alias pull='git pull'
 alias push='git push'
 alias gpf='git push -f'
-alias gp='echo "Use gpe (git push each)!"'
-alias gpe='git push-each'
-alias gpb='git push origin -u HEAD' # Push checked out branch to origin, create if doesn't yet exist
+alias gpb='git push origin -u HEAD'
 alias gb='git branch'
-alias gbd='gb -d'
+alias gbd='git branch -d'
 alias gch='git checkout'
 alias gm='git merge '
 alias recap='git log --all --oneline --no-merges --author=$(git config user.name)'
@@ -96,10 +78,6 @@ function extract() {
 
 # System suspend ignoring inhibitors and users
 alias sus='systemctl suspend -i'
-
-# tmux workflow
-alias tmux='tmux -2'
-alias ide='tmux split-window -b -v -p 80 vim'
 
 # misc
 alias vim='vi'

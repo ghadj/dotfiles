@@ -74,9 +74,10 @@ plugins=(git
          zsh-autosuggestions
          zsh-completions
          vi-mode
-#         fzf
+         fzf
          zsh-syntax-highlighting
          virtualenv
+         z
 )
 
 # zsh-completions - reload completion
