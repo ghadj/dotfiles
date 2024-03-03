@@ -135,6 +135,9 @@ source /opt/ros/noetic/setup.zsh
 export ROS_HOSTNAME=localhost
 export ROS_MASTER_URI=http://localhost:11311
 
+# FZF
+export FZF_DEFAULT_OPTS="--preview 'cat -s {}' --color=bw"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/george/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
