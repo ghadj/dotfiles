@@ -28,10 +28,6 @@ Plugin 'tpope/vim-surround'
 call vundle#end()            " required
 " }}}
 
-" Plugin settings {{{
-
-" }}}
-
 " Netrw  {{{
 let g:netrw_banner = 0
 let g:netrw_winsize = 20
@@ -79,9 +75,6 @@ set clipboard=unnamedplus
 " VIM user interface {{{
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
-
-" Enable mouse
-set mouse=a
 
 " Turn on the Wild menu
 set wildmenu
@@ -200,12 +193,6 @@ nnoremap <leader>b :ls<cr>:b
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
 " Close the current buffer
 map <leader>bc :Bclose<cr>:tabclose<cr>gT
 
@@ -248,19 +235,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
-
 " Delete trailing whitespace on save, useful for some filetypes
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
@@ -274,11 +248,6 @@ if has("autocmd")
     autocmd BufWritePre *.tex,*.java,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
-" Use the black hole register to delete something
-" Use "_dP to paste something and keep it available for further pasting
-nnoremap <leader>d "_d
-xnoremap <leader>d "_d
-xnoremap <leader>p "_dP
 " }}}
 
 " Spell checking {{{
@@ -355,16 +324,10 @@ highlight SpellBad term=standout ctermfg=9 term=underline cterm=underline gui=un
 highlight clear SpellCap
 highlight SpellCap term=standout ctermfg=12 term=underline cterm=underline gui=undercurl guisp=#008000
 
-" Highlight current line
-set cursorline
-
 " Remove background from vertical split
 " Set split separator to Unicode box drawing character
 set encoding=utf8
 set fillchars=vert:│
-
-" Set split color
-highlight VertSplit cterm=NONE ctermfg=None ctermbg=None
 
 set background=light
 
@@ -374,13 +337,10 @@ highlight clear SignColumn
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 highlight Comment cterm=italic
+
+" Set split color
+highlight VertSplit cterm=NONE ctermfg=None ctermbg=None
+
 " }}}
 
-" VS-code integration {{{
-if exists('g:vscode')
-    " VSCode extension
-else
-    " ordinary neovim
-endif
-" }}}
 " vim:foldmethod=marker:foldlevel=0
