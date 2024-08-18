@@ -1,33 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" Plugin setup {{{ 
-" Set the runtime path to include Vundle and initialize 
-" Reference: https://github.com/VundleVim/Vundle.vim
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" Keep Plugin commands between vundle#begin/end.
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
-
-" Plugins
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-" }}}
-
 " Netrw  {{{
 let g:netrw_banner = 0
 let g:netrw_winsize = 20

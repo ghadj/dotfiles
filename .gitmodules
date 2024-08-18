@@ -7,3 +7,15 @@
 [submodule ".zsh/zsh-autocomplete"]
 	path = .zsh/zsh-autocomplete
 	url = https://github.com/marlonrichert/zsh-autocomplete.git
+[submodule ".vim/pack/3rd-party/start/vim-gitgutter"]
+	path = .vim/pack/3rd-party/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule ".vim/pack/3rd-party/start/vim-easymotion"]
+	path = .vim/pack/3rd-party/start/vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
+[submodule ".vim/pack/3rd-party/start/vim-fugitive"]
+	path = .vim/pack/3rd-party/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule ".vim/pack/3rd-party/start/vim-surround"]
+	path = .vim/pack/3rd-party/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
