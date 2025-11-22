@@ -275,7 +275,7 @@ inoremap <C-y> <C-o><C-y>
 
 " Colors and Fonts {{{
 " Enable syntax highlighting
-colorscheme default
+colorscheme vim
 
 syntax enable 
 
@@ -302,7 +302,7 @@ highlight SpellCap term=standout ctermfg=12 term=underline cterm=underline gui=u
 set encoding=utf8
 set fillchars=vert:│
 
-set background=light
+set background=dark
 
 " Remove background from sign-column used in gutter plugin
 highlight clear SignColumn
