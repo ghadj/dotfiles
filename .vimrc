@@ -275,7 +275,9 @@ inoremap <C-y> <C-o><C-y>
 
 " Colors and Fonts {{{
 " Enable syntax highlighting
-colorscheme vim
+if has('nvim')
+    colorscheme vim
+endif
 
 syntax enable 
 
