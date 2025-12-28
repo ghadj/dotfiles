@@ -1,0 +1,39 @@
+# 1. Basic Library Locations
+directory: ~/Music/Library
+library: ~/Music/musiclibrary.db
+
+# 2. Import Settings (Automated Tagging)
+import:
+    copy: yes           # Move/Copy files to the new structure instead of just tagging in place
+    write: yes          # Write metadata tags directly to the files
+    autotag: yes        # Use MusicBrainz to find the best match
+    resume: ask         # Resume interrupted imports
+    incremental: yes    # Skip folders that have already been imported
+
+# 3. Enabled Plugins
+# fetchart: Gets covers / embedart: Puts cover inside file / web: Browser UI
+# lastgenre: Tags genres / scrub: Removes junk tags
+plugins: fetchart embedart web lastgenre scrub
+
+# 4. Directory Structure (The Organization)
+paths:
+    default: $albumartist/[$year] $album/$track $title
+    singleton: Non-Album/$artist/$title
+    comp: Compilations/$album/$track $title
+
+# 5. Plugin-Specific Configurations
+fetchart:
+    auto: yes
+    maxwidth: 1000      # Keeps file sizes reasonable
+    sources: filesystem coverart itunes amazon albumart
+
+embedart:
+    auto: yes           # Embeds the fetched art into the file's metadata
+
+lastgenre:
+    auto: yes
+    count: 2            # Only pick the top 2 most relevant genres
+
+web:
+    host: 127.0.0.1
+    port: 8337
