@@ -22,3 +22,6 @@
 [submodule ".vim/pack/3rd-party/start/fzf.vim"]
 	path = .vim/pack/3rd-party/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
+[submodule "pack/3rd-party/start/vim-easymotion"]
+	path = pack/3rd-party/start/vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
