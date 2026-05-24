@@ -25,3 +25,12 @@
 [submodule ".vim/pack/3rd-party/start/copilot.vim"]
 	path = .vim/pack/3rd-party/start/copilot.vim
 	url = https://github.com/github/copilot.vim.git
+[submodule ".zsh/fzf-tab"]
+	path = .zsh/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab.git
+[submodule ".zsh/fast-syntax-highlighting"]
+	path = .zsh/fast-syntax-highlighting
+	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git
+[submodule ".zsh/zsh-completions"]
+	path = .zsh/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
