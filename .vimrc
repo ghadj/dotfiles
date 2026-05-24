@@ -183,7 +183,10 @@ nnoremap <leader>q :e ~/buffer<CR>
 nnoremap <leader>x :e ~/buffer.md<CR>
 nnoremap <leader>pp :setlocal paste!<CR>
 
-colorscheme vim
+if has('nvim')
+    set termguicolors
+    colorscheme vim
+endif
 
 " Typography Render Overrides
 highlight! link markdownItalic Normal
