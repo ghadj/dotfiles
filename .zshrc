@@ -34,23 +34,26 @@ fi
 # }}}
 
 # Asynchronous Inputs & Plugins {{{
-# Pure binary evaluation (Executed once)
-source <(fzf --zsh)
 
 # Advanced Fuzzy Tab Completion Layout (Must be loaded immediately after compinit)
 if [[ -f ~/.zsh/fzf-tab/fzf-tab.plugin.zsh ]]; then
     source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
 fi
 
-# Real-time Auto-completion Menu Engine
-if [[ -f ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
-    source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-fi
-
 # Inline Fish-like History Suggestions
 if [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
+
+# Pure binary evaluation (Executed once)
+if command -v fzf &>/dev/null; then
+    source <(fzf --zsh)
+fi
+
+# Real-time Auto-completion Menu Engine
+# if [[ -f ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
+#     source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# fi
 
 # ABSOLUTE LAST: Highlighting wraps all previously bound ZLE widgets
 if [[ -f ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
